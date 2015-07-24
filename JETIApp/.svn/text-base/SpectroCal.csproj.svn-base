@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D01431C-12E0-41B1-945B-BDB83037E12D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JETIApp</RootNamespace>
+    <AssemblyName>Gamma Calibration</AssemblyName>
+    <SccProjectName>Spectrocal Calibration</SccProjectName>
+    <SccLocalPath>..</SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>MSSCCI:PushOk SVNSCC</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NationalInstruments.Common, Version=9.0.35.362, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
+    <Reference Include="NationalInstruments.VisaNS, Version=9.0.35.156, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
+    <Reference Include="StereolabFX, Version=1.0.0.573, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Stereolab Library Mirror\StereolabFXTao\1.0.0.431\StereolabFX.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tao.OpenGl, Version=2.1.0.4, Culture=neutral, PublicKeyToken=1ca010269a4501ef, processorArchitecture=MSIL" />
+    <Reference Include="Tao.Platform.Windows, Version=1.0.0.4, Culture=neutral, PublicKeyToken=701104b2da67a104, processorArchitecture=MSIL" />
+    <Reference Include="Troschuetz.Random, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>V:\Troschuetz.Random\1.4.0.0\Troschuetz.Random.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Analysis.Designer.cs">
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BrontesCalibration.cs" />
+    <Compile Include="CalibConfig.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CalibrationCore.cs">
+    </Compile>
+    <Compile Include="Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="CRSCalibration.cs" />
+    <Compile Include="Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display.Designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JETICore.cs" />
+    <Compile Include="JETIException.cs" />
+    <Compile Include="JETIRadio.cs" />
+    <Compile Include="JETIRadioEx.cs" />
+    <Compile Include="LSCalibration.cs" />
+    <Compile Include="Power.cs" />
+    <Compile Include="SelectScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectScreen.designer.cs">
+      <DependentUpon>SelectScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Analysis.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectScreen.resx">
+      <DependentUpon>SelectScreen.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timing.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Timing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WhichReadings.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WhichReadings.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SWCalibration.cs" />
+    <Compile Include="Timing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timing.Designer.cs">
+      <DependentUpon>Timing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WhichReadings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WhichReadings.Designer.cs">
+      <DependentUpon>WhichReadings.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jeti_core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jeti_radio.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jeti_radio_ex.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NPlot\NPlot.csproj">
+      <Project>{E6867FF5-74EC-4464-8958-D71CB46232F3}</Project>
+      <Name>NPlot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmlSerializer\XmlSerializer.csproj">
+      <Project>{82241DD2-4BB8-4B12-AE28-B34EA9F911E2}</Project>
+      <Name>XmlSerializer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

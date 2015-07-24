@@ -1,0 +1,5 @@
+#AuthType Ucam-WebAuth
+#Require user as2283 acgt2 efw27
+
+RewriteEngine on
+RewriteRule ^api/(.*)$ admin/api.php?path=$1 [L,QSA]
