@@ -56,11 +56,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibUsbDotNet">
+      <HintPath>..\..\..\..\..\..\Program Files\LibUsbDotNet\LibUsbDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.Common, Version=9.0.35.362, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
-    <Reference Include="NationalInstruments.VisaNS, Version=9.0.35.156, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL" />
-    <Reference Include="StereolabFX, Version=1.0.0.573, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Stereolab Library Mirror\StereolabFXTao\1.0.0.431\StereolabFX.dll</HintPath>
+    <Reference Include="NPlot">
+      <HintPath>libraries\NPlot.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -74,113 +75,6 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tao.OpenGl, Version=2.1.0.4, Culture=neutral, PublicKeyToken=1ca010269a4501ef, processorArchitecture=MSIL" />
-    <Reference Include="Tao.Platform.Windows, Version=1.0.0.4, Culture=neutral, PublicKeyToken=701104b2da67a104, processorArchitecture=MSIL" />
-    <Reference Include="Troschuetz.Random, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>V:\Troschuetz.Random\1.4.0.0\Troschuetz.Random.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Analysis.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Analysis.Designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Analysis.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\BrontesCalibration.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\CalibConfig.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\CalibrationCore.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Config.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Config.Designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Config.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Constants.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\CRSCalibration.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Display.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Display.Designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Display.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\JETICore.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\JETIException.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\JETIRadio.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\JETIRadioEx.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\LSCalibration.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Power.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SelectScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SelectScreen.designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SelectScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Program.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Analysis.resx">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Analysis.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Config.resx">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Config.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SelectScreen.resx">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SelectScreen.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Timing.resx">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Timing.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\WhichReadings.resx">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\WhichReadings.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Resources.Designer.cs">
-      <DependentUpon>..\..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\app.config" />
-    <None Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Settings.Designer.cs">
-      <DependentUpon>..\..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Properties\Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\SWCalibration.cs" />
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Timing.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Timing.Designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Timing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\WhichReadings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\WhichReadings.Designer.cs">
-      <DependentUpon>..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\WhichReadings.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\jeti_core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\jeti_radio.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\jeti_radio_ex.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Microsoft.Net.Client.3.5">
@@ -192,6 +86,54 @@
     <BootstrapperPackage Include="..\..\..\..\..\Cai%27s MBP HDD\Documents\Code\Neurolex\JETIApp\Microsoft.Windows.Installer.3.1">
       <Visible>False</Visible>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BrontesCalibration.cs" />
+    <Compile Include="BrontesCalibrationLibUSB.cs" />
+    <Compile Include="CalibConfig.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CalibrationCore.cs" />
+    <Compile Include="Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="CRSCalibration.cs" />
+    <Compile Include="Display.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JETICore.cs" />
+    <Compile Include="JETIException.cs" />
+    <Compile Include="JETIRadio.cs" />
+    <Compile Include="JETIRadioEx.cs" />
+    <Compile Include="LSCalibration.cs" />
+    <Compile Include="Power.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Resources.Designer.cs" />
+    <Compile Include="SelectScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs" />
+    <Compile Include="SWCalibration.cs" />
+    <Compile Include="Timing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WhichReadings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="libraries\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

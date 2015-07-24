@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpectroCal", "SpectroCal.csproj", "{8D01431C-12E0-41B1-945B-BDB83037E12D}"
 EndProject
 Global
@@ -14,7 +16,7 @@ Global
 		{8D01431C-12E0-41B1-945B-BDB83037E12D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D01431C-12E0-41B1-945B-BDB83037E12D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SpectroCal.csproj
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

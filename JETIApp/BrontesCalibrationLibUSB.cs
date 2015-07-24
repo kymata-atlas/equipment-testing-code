@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using LibUsbDotNet;
 using LibUsbDotNet.Main;
-using LibUsbDotNet.Info;
 
 
 namespace JETIApp
 {
-	public class BrontesCalibrationLibUSB : CalibrationCore
+    public class BrontesCalibrationLibUSB : CalibrationCore
 	{
 		public UsbDevice BrontesDevice;
 		public static UsbDeviceFinder BrontesFinder = new UsbDeviceFinder(0x1781, 0x0E98);

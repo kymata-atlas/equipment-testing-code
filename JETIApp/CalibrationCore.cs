@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
-using Troschuetz.Random;
 
 namespace JETIApp
 {
-	public class GrayItem
+    public class GrayItem
 	{
 		public uint R;
 		public uint G;
@@ -165,7 +162,7 @@ namespace JETIApp
 			_Abort = true;
 		}
 		
-		
+		/*
 		protected void GenerateGrayValues()
 		{
 			uint R=0;
@@ -338,7 +335,8 @@ namespace JETIApp
 			}
 			
 		}
-		
+		*/
+
 		void LoadGrayValues () {
 
 			// Check if the extended range is on or off
@@ -358,7 +356,7 @@ namespace JETIApp
 					
 					string line = reader.ReadLine();
 					
-					string[] segments = line.Split(",").ToList();
+					string[] segments = line.Split(',');
 
 					// Add to list of colours
 					colours.Add(new ColourRGB(segments[0], segments[1], segments[2]));
@@ -678,15 +676,15 @@ namespace JETIApp
 		/// <summary>
 		/// Red.
 		/// </summary>
-		public int R;
+		public uint R;
 		/// <summary>
 		/// Green
 		/// </summary>
-		public int G;
+		public uint G;
 		/// <summary>
 		/// Blue.
 		/// </summary>
-		public int B;
+		public uint B;
 		
 		/// <summary>
 		/// String-based constructor.
@@ -700,17 +698,17 @@ namespace JETIApp
 			float floatG = float.Parse(stringG);
 			float floatB = float.Parse(stringB);
 
-			this.R = float2int(floatR);
-			this.G = float2int(floatG);
-			this.B = float2int(floatB);
+			this.R = float2uint(floatR);
+			this.G = float2uint(floatG);
+			this.B = float2uint(floatB);
 		}
 
 		/// <summary>
 		/// Converts floats (from Matlab) to ints (for the actual colour) in the way we need.
 		/// </summary>
 		/// <param name="inValue">In value.</param>
-		private static int float2int(float inValue) {
-			return Math.Floor (inValue);
+		private static uint float2uint(float inValue) {
+			return (uint)Math.Floor (inValue);
 		}
 	}
 }
