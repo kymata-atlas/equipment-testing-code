@@ -98,11 +98,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalibrationCore.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Class2.cs" />
+    <Compile Include="Class3.cs" />
     <Compile Include="Config.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="CRSCalibration.cs" />
     <Compile Include="Display.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,7 +112,6 @@
     <Compile Include="JETIException.cs" />
     <Compile Include="JETIRadio.cs" />
     <Compile Include="JETIRadioEx.cs" />
-    <Compile Include="LSCalibration.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Resources.Designer.cs" />
@@ -118,7 +119,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings.Designer.cs" />
-    <Compile Include="SWCalibration.cs" />
     <Compile Include="Timing.cs">
       <SubType>Form</SubType>
     </Compile>
