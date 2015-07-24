@@ -57,15 +57,17 @@ namespace JETIApp
         {
             InitializeComponent();
 
+            OpenTK.GLControl glControl = new OpenTK.GLControl();
+
             disp = new DisplayParams();
             disp.Width = glControl.Width;
             disp.Height = glControl.Height;
             disp.Pix_Width = glControl.Width;
             disp.Pix_Height = glControl.Height;
             disp.Distance = 1.0f;
-            glControl.InitializeContexts();
+            glControl.InitializeLifetimeService();
             //glControl.Draw();
-			this.KeyPreview = true;
+            this.KeyPreview = true;
 			abort = false;
 			grayitem = new GrayItem(127,127,127);
         }
