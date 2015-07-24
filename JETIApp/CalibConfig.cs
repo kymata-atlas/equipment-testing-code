@@ -555,7 +555,6 @@ namespace JETIApp
 		public static bool Save(string filename, CalibConfig config)
 		{
 			Yao.XmlSerializer serializer = new Yao.XmlSerializer();
-            serializer.SerializationIgnoredAttributeType = typeof(XmlIgnoreAttribute);
 			serializer.Serialize(config, filename);
 			return true;
 				
