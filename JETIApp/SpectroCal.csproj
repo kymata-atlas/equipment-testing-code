@@ -110,9 +110,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalibrationCore.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
-    <Compile Include="Class3.cs" />
+    <Compile Include="libraries\XmlSerializer.cs" />
+    <Compile Include="libraries\XmlSerializationTag.cs" />
+    <Compile Include="libraries\XmlDeserializer.cs" />
     <Compile Include="Config.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,9 +144,7 @@
   <ItemGroup>
     <None Include="Settings.settings" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="libraries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
