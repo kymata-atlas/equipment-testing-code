@@ -162,7 +162,6 @@ namespace JETIApp
 			_Abort = true;
 		}
 		
-		/*
 		protected void GenerateGrayValues()
 		{
 			uint R=0;
@@ -324,18 +323,17 @@ namespace JETIApp
 			}
 			
 			//Randomize the gray values
-			StandardGenerator sg=new StandardGenerator();
+            Random rng = new Random();
 			int r;
 			
 			while (temp.Count>0)
 			{
-				r=sg.Next(0,temp.Count-1);
+                r = rng.Next(0, temp.Count - 1);
 				_GrayValues.Add(temp[r]);
 				temp.RemoveAt(r);
 			}
 			
 		}
-		*/
 
 		void LoadGrayValues () {
 
