@@ -57,8 +57,8 @@ namespace JETIApp
         {
             InitializeComponent();
 
-            OpenTK.GLControl glControl = new OpenTK.GLControl();
-
+            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+            
             disp = new DisplayParams();
             disp.Width = glControl.Width;
             disp.Height = glControl.Height;
@@ -172,6 +172,9 @@ namespace JETIApp
 			if (DoPatch)
 			{
 				int border = 2;
+
+                var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+                
 				Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 				Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT | Gl.GL_ACCUM_BUFFER_BIT);
 				Gl.glMatrixMode(Gl.GL_MODELVIEW);
@@ -186,7 +189,8 @@ namespace JETIApp
 				Gl.glColor3ub((byte)grayitem.R, (byte)grayitem.G, (byte)grayitem.B); //unsigned byte corresponds to 8-bit RGB values
 				Gl.glRecti(-disp.Pix_Width / 2 + border, -disp.Pix_Height / 2 + border, disp.Pix_Width / 2 - border, disp.Pix_Height / 2 - border);
 				Gl.glPopMatrix();
-				glControl.SwapBuffers();
+
+                glControl.SwapBuffers();
 			}
         }
 
@@ -196,10 +200,14 @@ namespace JETIApp
             if (InitGl == true)
             {
                 InitGl = false;
+
+                var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+                
                 disp.Width = glControl.Width;
                 disp.Height = glControl.Height;
                 disp.Pix_Width = glControl.Width;
                 disp.Pix_Height = glControl.Height;
+
                 DisplaySetupFunctions.SetStandardGLConfig(disp, true);
                 Gl.glDisable(Gl.GL_POLYGON_SMOOTH); // required when drawing in 2D
             }
@@ -208,6 +216,9 @@ namespace JETIApp
 
         public bool TakeReadings(frmConfig c)
         {
+
+            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+
             bool ScreenSaver=true;
             bool ret;
 			DoPatch = true;
@@ -215,7 +226,7 @@ namespace JETIApp
 			grayitem.B = 127;
 			grayitem.G = 127;
 			this.Focus();
-			glControl.Draw();
+            glControl.Draw();
             string result = "";
 
 			ret = StereolabFX.DisplaySetupFunctions.GetScreenSaverActive(ref ScreenSaver);

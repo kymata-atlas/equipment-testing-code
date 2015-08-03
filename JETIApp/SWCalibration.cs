@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Troschuetz.Random;
 
 namespace JETIApp
 {
 	public class SWCalibration : CalibrationCore
 	{
 		private const double _gamma=2.2;
-
-		private StandardGenerator sg;
 
 		public SWCalibration(uint scrwidth, uint scrheight)
 			: base(scrwidth, scrheight)
@@ -36,8 +33,6 @@ namespace JETIApp
 		{
 			if (base.Start(ref result)==false)
 				return false;
-
-			sg = new StandardGenerator();
 
 			InitOutput();
 			Abort = false;
