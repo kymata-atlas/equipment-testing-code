@@ -90,6 +90,8 @@ namespace JETIApp
 			grayitem.G = 127;
 			grayitem.B = 127;
 
+            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+
             glControl.Draw();
         /*    ret = _Core.FindSpectroCal(ref result);
             if (ret == false)
@@ -101,6 +103,8 @@ namespace JETIApp
 
         private void PopulateFromConfig(CalibConfig Config)
         {
+            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
+
             // set position of the GL control
             int Y = (int)(Config.DisplayHeight - Config.PatchHeight) / 2;
             int X = (int)(Config.DisplayWidth - Config.PatchWidth) / 2;
