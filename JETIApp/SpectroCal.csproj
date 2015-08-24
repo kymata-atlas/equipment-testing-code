@@ -70,18 +70,6 @@
     <Reference Include="NPlot">
       <HintPath>libraries\NPlot.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.Compatibility, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.Compatibility.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OpenTK\1.1\Binaries\OpenTK\Release\OpenTK.GLControl.dll</HintPath>
-    </Reference>
     <Reference Include="StereolabFX">
       <HintPath>libraries\StereolabFX.dll</HintPath>
     </Reference>
@@ -97,6 +85,39 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tao.Cg">
+      <HintPath>libraries\tao\Tao.Cg.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.DevIl">
+      <HintPath>libraries\tao\Tao.DevIl.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.FreeGlut">
+      <HintPath>libraries\tao\Tao.FreeGlut.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Glfw">
+      <HintPath>libraries\tao\Tao.Glfw.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Lua">
+      <HintPath>libraries\tao\Tao.Lua.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Ode">
+      <HintPath>libraries\tao\Tao.Ode.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.OpenAl">
+      <HintPath>libraries\tao\Tao.OpenAl.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.OpenGl">
+      <HintPath>libraries\tao\Tao.OpenGl.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.PhysFs">
+      <HintPath>libraries\tao\Tao.PhysFs.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Platform.Windows">
+      <HintPath>libraries\tao\Tao.Platform.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>libraries\tao\Tao.Sdl.dll</HintPath>
+    </Reference>
     <Reference Include="Troschuetz.Random">
       <HintPath>libraries\Troschuetz.Random.dll</HintPath>
     </Reference>
@@ -116,6 +137,9 @@
     <Compile Include="Analysis.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Analysis.Designer.cs">
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="BrontesCalibration.cs" />
     <Compile Include="BrontesCalibrationLibUSB.cs" />
@@ -123,6 +147,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalibrationCore.cs" />
+    <Compile Include="Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Display.Designer.cs">
+      <DependentUpon>Display.cs</DependentUpon>
+    </Compile>
     <Compile Include="libraries\XmlSerializer.cs" />
     <Compile Include="libraries\XmlSerializationTag.cs" />
     <Compile Include="libraries\XmlDeserializer.cs" />
@@ -145,17 +175,44 @@
     <Compile Include="SelectScreen.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SelectScreen.designer.cs">
+      <DependentUpon>SelectScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.Designer.cs" />
     <Compile Include="SWCalibration.cs" />
     <Compile Include="Timing.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Timing.Designer.cs">
+      <DependentUpon>Timing.cs</DependentUpon>
+    </Compile>
     <Compile Include="WhichReadings.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WhichReadings.Designer.cs">
+      <DependentUpon>WhichReadings.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Analysis.resx">
+      <DependentUpon>Analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config.resx">
+      <DependentUpon>Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display.resx">
+      <DependentUpon>Display.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx" />
+    <EmbeddedResource Include="SelectScreen.resx">
+      <DependentUpon>SelectScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Timing.resx">
+      <DependentUpon>Timing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WhichReadings.resx">
+      <DependentUpon>WhichReadings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Settings.settings" />
