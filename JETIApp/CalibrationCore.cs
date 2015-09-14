@@ -377,12 +377,12 @@ namespace JETIApp
 			}
 			
 			// add to real list
-			index = 0;
-			
-			while (index > tempGrayItems.Count) {
-				_GrayValues.Add(tempGrayItems[index]);
-				index++;
-			}
+
+            foreach(GrayItem tempGrayItem in tempGrayItems)
+            {
+                _GrayValues.Add(tempGrayItem);
+            }
+            
 		}
 		
 		/*        public virtual bool CloseDevice()

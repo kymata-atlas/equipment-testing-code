@@ -57,15 +57,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LibUsbDotNet">
-      <HintPath>..\..\..\..\..\..\Program Files\LibUsbDotNet\LibUsbDotNet.dll</HintPath>
+      <HintPath>libraries\LibUsbDotNet.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.Common, Version=13.0.35.190, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\NationalInstruments.Common\13.0.35.190__18cbae0f9955702a\NationalInstruments.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="NationalInstruments.VisaNS, Version=13.0.35.167, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\NationalInstruments.VisaNS\13.0.35.167__18cbae0f9955702a\NationalInstruments.VisaNS.dll</HintPath>
+    <Reference Include="NationalInstruments.VisaNS">
+      <HintPath>libraries\NationalInstruments.VisaNS.dll</HintPath>
     </Reference>
     <Reference Include="NPlot">
       <HintPath>libraries\NPlot.dll</HintPath>
@@ -179,6 +174,11 @@
       <DependentUpon>SelectScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.Designer.cs" />
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SWCalibration.cs" />
     <Compile Include="Timing.cs">
       <SubType>Form</SubType>
@@ -215,7 +215,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Settings.settings" />
+    <None Include="app.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
