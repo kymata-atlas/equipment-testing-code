@@ -28,13 +28,15 @@ namespace JETIApp
 			return true;
 		}
 
-		public override bool Start(ref string result) {
+		public override bool Start(ref string result)
+		{
+
 		
 			if (base.Start(ref result) == false)
 				return false;
 
-			if(BrontesID=="") {
-			
+			if(BrontesID=="")
+			{
 				if (ConfigDevice()==false)
 					return false;
 			}
@@ -49,10 +51,6 @@ namespace JETIApp
 				Session.Write(string.Format(":SENSE:AVERAGE {0}",Config.Samples)); // set samples to average over
 				Session.Write(string.Format(":SENSE:INT {0}",Config.IntegrationTime));
 				Session.Write(":SENSE:SBW small"); // set calibration matrix
-
-				// TODO: think about these:
-				// White point reference?
-				// Gamma table?
 				
 			}
 			//catch (VisaException ex)
@@ -65,14 +63,14 @@ namespace JETIApp
 			return true;
 		}
 
-		public override bool Stop() {
-		
+		public override bool Stop()
+		{
 			CloseDevice();
 			return base.Stop();
 		}
 
-		public override bool TakeReading(ref string result, out long time, bool ignore) {
-		
+		public override bool TakeReading(ref string result, out long time, bool ignore)
+		{
 			time=0;
 			string output;
 
@@ -88,8 +86,7 @@ namespace JETIApp
 
 			try
 			{
-				//output = Session.Query(":MEAS:XYZ");
-				output = Session.Query(":MEAS:Lab");
+				output = Session.Query(":MEAS:XYZ");
 			}
 			catch (VisaException ex)
 			{
@@ -107,6 +104,7 @@ namespace JETIApp
 			Reading r = new Reading(GrayValues[Index].R, GrayValues[Index].G, GrayValues[Index].B, lum, time, GrayValues[Index].index);
 
 			return WriteReading(r);
+
 
 		}
 
@@ -140,5 +138,7 @@ namespace JETIApp
 			return true;
 
 		}
+
+
 	}
 }

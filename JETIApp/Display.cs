@@ -57,15 +57,13 @@ namespace JETIApp
         {
             InitializeComponent();
 
-            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-            
             disp = new DisplayParams();
             disp.Width = glControl.Width;
             disp.Height = glControl.Height;
             disp.Pix_Width = glControl.Width;
             disp.Pix_Height = glControl.Height;
             disp.Distance = 1.0f;
-            glControl.InitializeLifetimeService();
+            glControl.InitializeContexts();
             //glControl.Draw();
             this.KeyPreview = true;
 			abort = false;
@@ -90,8 +88,6 @@ namespace JETIApp
 			grayitem.G = 127;
 			grayitem.B = 127;
 
-            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-
             glControl.Draw();
         /*    ret = _Core.FindSpectroCal(ref result);
             if (ret == false)
@@ -103,8 +99,6 @@ namespace JETIApp
 
         private void PopulateFromConfig(CalibConfig Config)
         {
-            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-
             // set position of the GL control
             int Y = (int)(Config.DisplayHeight - Config.PatchHeight) / 2;
             int X = (int)(Config.DisplayWidth - Config.PatchWidth) / 2;
@@ -176,9 +170,6 @@ namespace JETIApp
 			if (DoPatch)
 			{
 				int border = 2;
-
-                var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-                
 				Gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 				Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT | Gl.GL_ACCUM_BUFFER_BIT);
 				Gl.glMatrixMode(Gl.GL_MODELVIEW);
@@ -193,7 +184,6 @@ namespace JETIApp
 				Gl.glColor3ub((byte)grayitem.R, (byte)grayitem.G, (byte)grayitem.B); //unsigned byte corresponds to 8-bit RGB values
 				Gl.glRecti(-disp.Pix_Width / 2 + border, -disp.Pix_Height / 2 + border, disp.Pix_Width / 2 - border, disp.Pix_Height / 2 - border);
 				Gl.glPopMatrix();
-
                 glControl.SwapBuffers();
 			}
         }
@@ -204,14 +194,10 @@ namespace JETIApp
             if (InitGl == true)
             {
                 InitGl = false;
-
-                var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-                
                 disp.Width = glControl.Width;
                 disp.Height = glControl.Height;
                 disp.Pix_Width = glControl.Width;
                 disp.Pix_Height = glControl.Height;
-
                 DisplaySetupFunctions.SetStandardGLConfig(disp, true);
                 Gl.glDisable(Gl.GL_POLYGON_SMOOTH); // required when drawing in 2D
             }
@@ -220,9 +206,6 @@ namespace JETIApp
 
         public bool TakeReadings(frmConfig c)
         {
-
-            var glControl = new Tao.Platform.Windows.SimpleOpenGlControl();
-
             bool ScreenSaver=true;
             bool ret;
 			DoPatch = true;
