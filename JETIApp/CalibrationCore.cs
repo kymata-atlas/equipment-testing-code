@@ -609,20 +609,31 @@ namespace JETIApp
 
 			Output.Flush();
 
-		}
+        }
 
-		private string GetRGB(Reading reading)
-		{
-			String s = "";
-			// write RGB levels
-			if (Config.ReadingsPerLevel == 1 || Config.ReadingsDonePerLevel == 0) // write out grey values
-			{
-				s = String.Format("{0:D}\t{1:D}\t{2:D}\t{3:D}", reading.index, reading.R,reading.G, reading.B);
-			}
-			return s;
-		}
+        private string GetRGB(Reading reading)
+        {
+            String s = "";
+            // write RGB levels
+            if (Config.ReadingsPerLevel == 1 || Config.ReadingsDonePerLevel == 0) // write out grey values
+            {
+                s = String.Format("{0:D}\t{1:D}\t{2:D}\t{3:D}", reading.index, reading.R, reading.G, reading.B);
+            }
+            return s;
+        }
 
-		protected bool WriteReading(Reading reading)
+        private string GetRGB(TripleReading reading)
+        {
+            String s = "";
+            // write RGB levels
+            if (Config.ReadingsPerLevel == 1 || Config.ReadingsDonePerLevel == 0) // write out grey values
+            {
+                s = String.Format("{0:D}\t{1:D}\t{2:D}\t{3:D}", reading.index, reading.R, reading.G, reading.B);
+            }
+            return s;
+        }
+
+        protected bool WriteReading(Reading reading)
 		{
 			if (_Config.WriteOutput == true)
 			{
