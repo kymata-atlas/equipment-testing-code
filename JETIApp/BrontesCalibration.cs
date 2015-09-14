@@ -31,7 +31,7 @@ namespace JETIApp
 		public override bool Start(ref string result)
 		{
 
-		
+
 			if (base.Start(ref result) == false)
 				return false;
 
@@ -51,7 +51,7 @@ namespace JETIApp
 				Session.Write(string.Format(":SENSE:AVERAGE {0}",Config.Samples)); // set samples to average over
 				Session.Write(string.Format(":SENSE:INT {0}",Config.IntegrationTime));
 				Session.Write(":SENSE:SBW small"); // set calibration matrix
-				
+
 			}
 			//catch (VisaException ex)
 			//{
@@ -97,17 +97,20 @@ namespace JETIApp
 			sw.Stop();
 			time = sw.ElapsedMilliseconds;
 
-            // wikipedia says that XYZ is designed so that Y is a measure of brightness or luminance
-            // I think the following comment is wrong, and it's actually giving X,Y,Z,clip,noise, from which we want Y ([1])
+      // wikipedia says that XYZ is designed so that Y is a measure of brightness or luminance
+      // I think the following comment is wrong, and it's actually giving X,Y,Z,clip,noise, from which we want Y ([1])
 			// result is Y,x,y and a measurement of clipping and noise
 			string[] values = output.Split(new Char[] { ',' }, 5);
 			double lum = double.Parse(values[1]);
 
-			Reading r = new Reading(GrayValues[Index].R, GrayValues[Index].G, GrayValues[Index].B, lum, time, GrayValues[Index].index);
+			double x = double.Parse(values[0]);
+			double y = double.Parse(values[1]);
+			double z = double.Parse(values[2]);
+
+			TripleReading r = new TripleReading(GrayValues[Index].R, GrayValues[Index].G, GrayValues[Index].B, x, y, z, time, GrayValues[Index].index);
 
 			return WriteReading(r);
-
-
+			
 		}
 
 		public override bool ConfigDevice()

@@ -12,7 +12,7 @@ namespace JETIApp
 		public uint G;
 		public uint B;
 		public int index;
-		
+
 		public GrayItem(uint r, uint g, uint b)
 		{
 			R = r;
@@ -20,12 +20,12 @@ namespace JETIApp
 			B = b;
 		}
 	}
-	
+
 	public class Reading : GrayItem
 	{
 		public double luminance;
 		public double timing;
-		
+
 		public Reading(uint r, uint g, uint b,int idx)
 			: base(r, g, b)
 		{
@@ -33,8 +33,8 @@ namespace JETIApp
 			timing = -1;
 			index = idx;
 		}
-		
-		
+
+
 		public Reading(uint r, uint g, uint b, double lum,int idx)
 			: base(r, g, b)
 		{
@@ -42,8 +42,8 @@ namespace JETIApp
 			timing = -1;
 			index = idx;
 		}
-		
-		public Reading(uint r, uint g,uint b, double lum,double time,int idx): 
+
+		public Reading(uint r, uint g,uint b, double lum,double time,int idx):
 			base(r,g,b)
 		{
 			luminance = lum;
@@ -60,20 +60,61 @@ namespace JETIApp
 		}
 */
 	}
+
+  public class TripleReading : GrayItem
+  {
+    public double X;
+    public double Y;
+    public double Z;
+    public double timing;
+
+    public TripleReading(uint r, uint g, uint b, int idx)
+      : base (r, g, b)
+    {
+      X = -1.0;
+      Y = -1.0;
+      Z = -1.0;
+      timing = -1;
+      index = idx;
+    }
+
+    public TripleReading(uint r, uint g, uint b, double x, double y, double z, int idx)
+      : base (r, g, b)
+    {
+      X = x;
+      Y = y;
+      Z = Z;
+      timing = -1;
+      index = idx;
+    }
+
+    public TripleReading(uint r, uint g, uint b, double x, double y, double z, double time, int idx)
+      : base (r, g, b)
+    {
+      X = x;
+      Y = y;
+      Z = Z;
+      timing = time;
+      index = idx;
+    }
+  }
+
+
+
 	public class CalibrationCore
-		
+
 	{
-		
+
 		private List<Reading> _Readings;
 		private List<GrayItem> _GrayValues;
 		private CalibConfig _Config;
-		
+
 		private StreamWriter _Output;
-		
+
 		private int _Index;
-		
+
 		private static bool _Abort = false;
-		
+
 		protected static bool Abort
 		{
 			get
@@ -84,9 +125,9 @@ namespace JETIApp
 			{
 				_Abort = value;
 			}
-			
+
 		}
-		
+
 		protected List<GrayItem> GrayValues
 		{
 			get
@@ -94,7 +135,7 @@ namespace JETIApp
 				return _GrayValues;
 			}
 		}
-		
+
 		protected int Index
 		{
 			get
@@ -106,7 +147,7 @@ namespace JETIApp
 				_Index = value;
 			}
 		}
-		
+
 		protected StreamWriter Output
 		{
 			get
@@ -118,7 +159,7 @@ namespace JETIApp
 				_Output = value;
 			}
 		}
-		
+
 		public List<Reading> Readings
 		{
 			get
@@ -126,7 +167,7 @@ namespace JETIApp
 				return _Readings;
 			}
 		}
-		
+
 		public CalibConfig Config
 		{
 			get
@@ -138,72 +179,72 @@ namespace JETIApp
 				_Config = value;
 			}
 		}
-		
+
 		public int GrayLevelIndex
 		{
 			get
 			{
 				return _Index;
-				
+
 			}
 			set
 			{
 				_Index = value;
 			}
 		}
-		
+
 		public GrayItem GetGrayLevel()
 		{
 			return _GrayValues[_Index];
 		}
-		
+
 		public virtual void AbortMeasurement(object source, EventArgs e)
 		{
 			_Abort = true;
 		}
-		
+
 		protected void GenerateGrayValues()
 		{
 			uint R=0;
 			uint G=0;
 			uint B=0;
-			
+
 			_GrayValues=new List<GrayItem>();
 			List<GrayItem> temp=new List<GrayItem>();
-			
+
 			GrayItem gi; // temporary item
-			
+
 			int index = -1;
 			//			uint step = (Constants.MaxLevel+1)/Config.NoOfGrayLevels; // because levels go from zero there are MaxLevel+1 total levels
-			
+
 			uint RealGrayLevels = ((Constants.MaxLevel + 1) / Config.GrayLevelStepSize);
 			if (Config.GrayLevelStepSize != 1)
 				RealGrayLevels++;
-			
+
 			uint repeats;
 			if (Config.RandomizeRepeats==false)
 				repeats=1; // multiple readings are just taken consecutively so multiple items in the gray list are not needed
 			else
 				repeats=Config.ReadingsPerLevel;
-			
+
 			for (uint i=0;i<RealGrayLevels;i++)
 			{
 				uint level;
-				
+
 				if (i == 0)
 					level = 0;
 				else
 					level = (i * Config.GrayLevelStepSize);
-				
+
 				if (level > Constants.MaxLevel)
 					level = Constants.MaxLevel;
-				
+
 				index++;
-				
-				// add non extended items 
+
+				// add non extended items
 				for (uint j=0;j<repeats;j++)
 				{
-					
+
 					switch (Config.TargetColour)
 					{
 					case TargetColourEnum.Grayscale:
@@ -231,13 +272,13 @@ namespace JETIApp
 					gi = temp[temp.Count - 1];
 					gi.index = index;
 				}
-				
+
 				if (Config.ExtendRange==true)
 				{
 					// the order is important here - it should be in order of increasing luminosity as we use the index here to re-order the results for analysis
 					if (level<Constants.MaxLevel)
 					{
-						
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._001))
 						{
 							index++;
@@ -248,8 +289,8 @@ namespace JETIApp
 								gi.index = index;
 							}
 						}
-						
-						
+
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._100))
 						{
 							index++;
@@ -260,7 +301,7 @@ namespace JETIApp
 								gi.index = index;
 							}
 						}
-						
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._010))
 						{
 							index++;
@@ -271,8 +312,8 @@ namespace JETIApp
 								gi.index = index;
 							}
 						}
-						
-						
+
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._101))
 						{
 							index++;
@@ -283,7 +324,7 @@ namespace JETIApp
 								gi.index = index;
 							}
 						}
-						
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._011))
 						{
 							index++;
@@ -294,7 +335,7 @@ namespace JETIApp
 								gi.index = index;
 							}
 						}
-						
+
 						if (Config.ExtraBits == (Config.ExtraBits | ExtraBitsEnum._110))
 						{
 							index++;
@@ -306,10 +347,10 @@ namespace JETIApp
 							}
 						}
 					}
-					
+
 				}
 			}
-			
+
 			// check same number of readings against total readings
 			if (Config.RandomizeRepeats == false)
 			{
@@ -321,61 +362,61 @@ namespace JETIApp
 				if (Config.TotalReadings != temp.Count)
 					throw new ArgumentOutOfRangeException("Generated number of grey levels does not match expected number");
 			}
-			
+
 			//Randomize the gray values
             Random rng = new Random();
 			int r;
-			
+
 			while (temp.Count>0)
 			{
                 r = rng.Next(0, temp.Count - 1);
 				_GrayValues.Add(temp[r]);
 				temp.RemoveAt(r);
 			}
-			
+
 		}
 
 		void LoadGrayValues () {
 
 			// Check if the extended range is on or off
 			Console.WriteLine (String.Format ("We are really hoping this is false: {0}.", Config.ExtendRange));
-			
+
 			_GrayValues = new List<GrayItem>();
 			List<GrayItem> tempGrayItems = new List<GrayItem>();
-			
+
 			GrayItem gi; // temporary item
-			
+
 			// read a file
 			List<ColourRGB> colours = new List<ColourRGB> ();
-			
+
 			using (StreamReader reader = new StreamReader("ResourceFiles/Kymata-visual-stimulus-rgb-dataset2.txt")) {
-				
+
 				while (!reader.EndOfStream) {
-					
+
 					string line = reader.ReadLine();
-					
+
 					string[] segments = line.Split(',');
 
 					// Add to list of colours
 					colours.Add(new ColourRGB(segments[0], segments[1], segments[2]));
-					
+
 				}
-				
+
 			}
-			
+
 			int index = -1;
-			
+
 			foreach (ColourRGB colour in colours) {
-				
+
 				index++;
-				
+
 				// set R, G, B
-				
+
 				tempGrayItems.Add(new GrayItem(colour.R, colour.G, colour.B));
 				gi = tempGrayItems[tempGrayItems.Count - 1];
 				gi.index = index;
 			}
-			
+
 			// add to real list
 
             foreach(GrayItem tempGrayItem in tempGrayItems)
@@ -383,7 +424,7 @@ namespace JETIApp
                 _GrayValues.Add(tempGrayItem);
             }
 		}
-		
+
 		/*        public virtual bool CloseDevice()
         {
 			//int ret;
@@ -396,8 +437,8 @@ namespace JETIApp
 		{
 			throw new NotImplementedException();
 		}
-		
-		
+
+
 		protected bool ValidateConfig(ref string result)
 		{
 			if (Config.TargetColour == TargetColourEnum.Not_Set)
@@ -405,27 +446,27 @@ namespace JETIApp
 				result = "Target colour not set";
 				return false;
 			}
-			
+
 			if (Config.GetOutputFile() == "")
 			{
 				result = "No output file specified";
 				return false;
 			}
-			
-			
+
+
 			if (Config.PatchWidth <= 0 || Config.PatchHeight <= 0 || Config.PatchWidth > Config.DisplayWidth || Config.PatchHeight > Config.DisplayHeight)
 			{
 				result = "Patch size is invalid";
 				return false;
 			}
-			
-			
+
+
 			if (Config.TotalReadings <=0)
 			{
 				result="Configuration is invalid";
 				return false;
 			}
-			
+
 			if (Config.EmailWhenComplete == true)
 			{
 				if (Config.SMTPServer == "" || Config.EmailTo == "")
@@ -434,10 +475,10 @@ namespace JETIApp
 					Config.EmailWhenComplete = false;
 				}
 			}
-			
+
 			return true;
 		}
-		
+
 		/*public void Debug()
 		{
 			GenerateGrayValues();
@@ -483,7 +524,7 @@ namespace JETIApp
 
 					double jitter = sg.NextDouble(-maxjitter, maxjitter);
 					lum += jitter;
-			
+
 					StringBuilder sb = new StringBuilder();
 					// write the luminance value
 					sb.AppendFormat("\t{0:N}", lum);
@@ -502,7 +543,7 @@ namespace JETIApp
 					_Config.ReadingsDonePerLevel++;
 
 				}
-				
+
 			}
 			_Output.WriteLine("Calibration finished\t" + DateTime.Now.ToString());
 
@@ -511,52 +552,52 @@ namespace JETIApp
 
 		}
 		*/
-		
+
 		public virtual bool Start(ref string result)
 		{
 			// generate gray values
 			if (ValidateConfig(ref result) == false)
 				return false;
-			
+
 			if (result != "")
 			{
 				MessageBox.Show(result, "Gamma Calibration", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
-			
+
 			//GenerateGrayValues();
-			
+
 			LoadGrayValues();
-			
+
 			return true;
-			
+
 		}
-		
+
 		protected bool WriteError(Reading reading)
 		{
-			
+
 			if (reading != null)
 			{
 				Output.Write(GetRGB(reading));
-				
+
 				StringBuilder sb = new StringBuilder();
 				sb.Append("\t!!!!");
-				
+
 				if (Config.WriteTimings == true)
 				{
 					sb.AppendFormat("\t{0:N}", reading.timing);
 				}
-				
+
 				EndReading(sb);
 				return true;
-				
+
 			}
-			
+
 			return false;
 		}
-		
+
 		private void EndReading(StringBuilder sb)
 		{
-			
+
 			if (Config.ReadingsPerLevel == 1 || (Config.ReadingsDonePerLevel == Config.ReadingsPerLevel - 1 || Config.RandomizeRepeats==true))
 			{
 				Output.WriteLine(sb.ToString());
@@ -565,11 +606,11 @@ namespace JETIApp
 			{
 				Output.Write(sb.ToString());
 			}
-			
+
 			Output.Flush();
-			
+
 		}
-		
+
 		private string GetRGB(Reading reading)
 		{
 			String s = "";
@@ -580,29 +621,29 @@ namespace JETIApp
 			}
 			return s;
 		}
-		
+
 		protected bool WriteReading(Reading reading)
 		{
 			if (_Config.WriteOutput == true)
 			{
 				if (reading != null)
 				{
-					
+
 					Output.Write(GetRGB(reading));
-					
+
 					StringBuilder sb = new StringBuilder();
 					// write the luminance value
 					sb.AppendFormat("\t{0:N}", reading.luminance);
-					
+
 					if (Config.WriteTimings == true) // write timings
-						
+
 						sb.AppendFormat("\t{0:N}", reading.timing);
-					
+
 					EndReading(sb);
-					
+
 					return true;
 				}
-				
+
 				return false;
 			}
 			else
@@ -610,7 +651,39 @@ namespace JETIApp
 				return true;
 			}
 		}
-		
+
+		protected bool WriteReading(TripleReading reading)
+		{
+			if (_Config.WriteOutput == true)
+			{
+				if (reading != null)
+				{
+
+					Output.Write(GetRGB(reading));
+
+					StringBuilder sb = new StringBuilder();
+					// write the X, Y and Z values
+					sb.AppendFormat("\t{0:N}", reading.X);
+					sb.AppendFormat("\t{0:N}", reading.Y);
+					sb.AppendFormat("\t{0:N}", reading.Z);
+
+					if (Config.WriteTimings == true) // write timings
+
+						sb.AppendFormat("\t{0:N}", reading.timing);
+
+					EndReading(sb);
+
+					return true;
+				}
+
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 		protected void InitOutput()
 		{
 			// open file for output
@@ -623,36 +696,36 @@ namespace JETIApp
 			Output.WriteLine("Write timings\t " + Config.WriteTimings.ToString());
 			Output.WriteLine("Repeats are randomized\t" + Config.RandomizeRepeats.ToString());
 			Output.Flush();
-			
+
 		}
-		
-		
+
+
 		public virtual bool CloseDevice()
 		{
 			return false;
 		}
-		
+
 		public virtual bool ConfigDevice()
 		{
 			return false;
 		}
-		
+
 		public virtual bool Stop()
 		{
 			_Output.WriteLine("Calibration finished\t" + DateTime.Now.ToString());
 			_Output.Flush();
 			_Output.Close();
 			_Output.Dispose();
-			
+
 			return true;
 		}
-		
+
 		private CalibrationCore()
 		{
-			
+
 		}
-		
-		
+
+
 		public CalibrationCore(uint scrwidth, uint scrheight)
 		{
 			_Config = new CalibConfig(scrwidth, scrheight);
@@ -662,7 +735,7 @@ namespace JETIApp
 
 	}
 
-	
+
 	/// <summary>
 	/// A Colour with RGB values.
 	/// </summary>
@@ -682,7 +755,7 @@ namespace JETIApp
 		/// Blue.
 		/// </summary>
 		public uint B;
-		
+
 		/// <summary>
 		/// String-based constructor.
 		/// </summary>
@@ -709,7 +782,3 @@ namespace JETIApp
 		}
 	}
 }
-
-
-
-
