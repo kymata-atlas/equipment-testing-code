@@ -382,7 +382,6 @@ namespace JETIApp
             {
                 _GrayValues.Add(tempGrayItem);
             }
-            
 		}
 		
 		/*        public virtual bool CloseDevice()

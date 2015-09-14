@@ -201,7 +201,7 @@ namespace JETIApp
 			SetupDisplay(d);
             d.Show();
             d.Text = "Press space to start or escape to abort";
-			if (MessageBox.Show(this, "Press OK to start or cancel to abort (to abort mid measurement press escape).", "Start measurement", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
+			 if (MessageBox.Show(this, "Press OK to start or cancel to abort (to abort mid measurement press escape).", "Start measurement", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop) == DialogResult.Cancel)
 			{
 				ResetGammaTable();
 				d.Close();
