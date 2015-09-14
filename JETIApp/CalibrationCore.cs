@@ -93,7 +93,7 @@ namespace JETIApp
     {
       X = x;
       Y = y;
-      Z = Z;
+      Z = z;
       timing = time;
       index = idx;
     }
@@ -389,7 +389,7 @@ namespace JETIApp
 			// read a file
 			List<ColourRGB> colours = new List<ColourRGB> ();
 
-			using (StreamReader reader = new StreamReader("ResourceFiles/Kymata-visual-stimulus-rgb-dataset2.txt")) {
+			using (StreamReader reader = new StreamReader("ResourceFiles/Kymata-visual-stimulus-rgb-dataset1.txt")) {
 
 				while (!reader.EndOfStream) {
 

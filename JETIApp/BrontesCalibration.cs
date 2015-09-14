@@ -97,10 +97,10 @@ namespace JETIApp
 			sw.Stop();
 			time = sw.ElapsedMilliseconds;
 
-      // wikipedia says that XYZ is designed so that Y is a measure of brightness or luminance
-      // I think the following comment is wrong, and it's actually giving X,Y,Z,clip,noise, from which we want Y ([1])
-			// result is Y,x,y and a measurement of clipping and noise
-			string[] values = output.Split(new Char[] { ',' }, 5);
+            // wikipedia says that XYZ is designed so that Y is a measure of brightness or luminance
+            // I think the following comment is wrong, and it's actually giving X,Y,Z,clip,noise, from which we want Y ([1])
+            // result is Y,x,y and a measurement of clipping and noise
+            string[] values = output.Split(new Char[] { ',' }, 5);
 			double lum = double.Parse(values[1]);
 
 			double x = double.Parse(values[0]);
