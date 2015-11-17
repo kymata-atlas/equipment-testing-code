@@ -389,7 +389,8 @@ namespace JETIApp
 			// read a file
 			List<ColourRGB> colours = new List<ColourRGB> ();
 
-			using (StreamReader reader = new StreamReader("ResourceFiles/Kymata-visual-stimulus-rgb-dataset1.txt")) {
+            // change this for a different dataset
+			using (StreamReader reader = new StreamReader("ResourceFiles/Kymata-visual-stimulus-rgb-dataset2.txt")) {
 
 				while (!reader.EndOfStream) {
 

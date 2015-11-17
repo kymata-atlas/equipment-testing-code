@@ -495,7 +495,7 @@ namespace JETIApp
             _PatchWidth = 600;
             _PatchHeight = 600;
             _GrayLevelStepSize = 64;
-            _NoOfGrayLevels = 240;// 32992;// THIS IS TERRIBLE ((Constants.MaxLevel +1) / _GrayLevelStepSize) + 1; //+1 to include 0,0,0
+            _NoOfGrayLevels = 32992;// THIS IS TERRIBLE ((Constants.MaxLevel +1) / _GrayLevelStepSize) + 1; //+1 to include 0,0,0
 			_TotalReadings = _NoOfGrayLevels;
             _TotalReadingsDone = 0;
             _ReadingsDonePerLevel = 0;

@@ -86,6 +86,7 @@ namespace JETIApp
 
 			try
 			{
+                // Can change this to something like :MEAS:Lab or :MEAS:Yxy
 				output = Session.Query(":MEAS:XYZ");
 			}
 			catch (VisaException ex)
