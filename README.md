@@ -1,1 +1,5 @@
-This repository is intended to hold some of the functions tested in Kymata, when they need to be shared among the 'Kymata Hypothesis Group'. Each is held as a separate branch. Please do not share code outside this repository, as some functions may be proprietary.
+# Colourspace models
+
+A modified version of JETIApp which loads colour values from a file rather than generating them.
+
+Used to create visual-domain functions which describe what participants actually saw on the screen.

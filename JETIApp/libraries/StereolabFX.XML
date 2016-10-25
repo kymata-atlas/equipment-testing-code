@@ -1,0 +1,1090 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StereolabFX</name>
+    </assembly>
+    <members>
+        <member name="M:StereolabFX.CheckBoxGroupBox.SetCheckBoxBinding">
+            <summary>
+            Set up the binding to the property.
+            </summary>
+        </member>
+        <member name="T:StereolabFX.CheckBoxSelectionChangedEventArgs">
+            <summary>
+            An EventArgs class for check box selection changed events. 
+            </summary>
+        </member>
+        <member name="T:StereolabFX.RadioGroupBox">
+            <summary>
+            A Panel that supports binding an Enum property on an arbitrary object to a set of RadioButton controls. 
+            </summary>
+            <remarks>
+            USAGE: Add any number of RadioButtons. Assign the numeric value of your Enum's corresponding option to the Tag property of each button. (E.g., 
+            if MyEnum.Foo 0, MyEnum.Bar = 1, then radioButton1.Text = "Foo", radioButton1.Tag = 0, radioButton2.Text = "Bar", RadioButton2.tag = 1, and so
+            on.) RadioPanel will take care of setting the appropriate RadioButton control, and communicating changes back to your object when the
+            user selects another option. 
+            
+            Author: Jay Andrew Allen, August 2007
+            </remarks>
+        </member>
+        <member name="M:StereolabFX.RadioGroupBox.SetRadioButtonBinding">
+            <summary>
+            Set up the binding to the property.
+            </summary>
+        </member>
+        <member name="T:StereolabFX.RadioSelectionChangedEventArgs">
+            <summary>
+            An EventArgs class for radio button selection changed events. 
+            </summary>
+        </member>
+        <member name="T:StereolabFX.RGBA">
+            <summary>
+            RGBA structure for specifying colours
+            </summary>
+        </member>
+        <member name="F:StereolabFX.RGBA.R">
+            <summary>
+            Red component
+            </summary>
+        </member>
+        <member name="F:StereolabFX.RGBA.G">
+            <summary>
+            Green component
+            </summary>
+        </member>
+        <member name="F:StereolabFX.RGBA.B">
+            <summary>
+            Blue component
+            </summary>
+        </member>
+        <member name="F:StereolabFX.RGBA.A">
+            <summary>
+            Alpha component
+            </summary>
+        </member>
+        <member name="M:StereolabFX.RGBA.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor for RGBA structure with alpha channel
+            
+            </summary>
+            <param name="Red">Red component</param>
+            <param name="Green">Green component</param>
+            <param name="Blue">Blue component</param>
+            <param name="Alpha">Alpha component - set to 0.0 for fully transparent and 1.0 for fully opaque</param>
+        </member>
+        <member name="M:StereolabFX.RGBA.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor for RGBA structure which does not take an alpha channel
+            </summary>
+            <param name="Red">Red Component</param>
+            <param name="Green">Green Component</param>
+            <param name="Blue">Blue Component</param>
+        </member>
+        <member name="T:StereolabFX.GLCommonElements">
+            <summary>
+            Define common primitives as OPENGL Display Lists 
+            </summary>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_FIX_X(System.Single,System.Single,System.Single,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create fixation cross object
+            </summary>
+            <param name="Width">Real world width in metres</param>
+            <param name="Height">Real world height in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_NONIUS(System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Create a nonius fixation
+            </summary>
+            <param name="Height">Height in real world measurements in metres</param>
+            <param name="Gap">Gap in real world measurement in metres</param>
+            <param name="LineWidth">Linewidth in real world measurement in metres</param>
+            <param name="BackColour">Background colour</param>
+            <param name="Alpha">Alpha component</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_NONIUSFIX_X(System.Single,System.Single,System.Byte,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create nonius fixation
+            </summary>
+            <param name="Diameter">Diameter in real world measurements in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Eye">Eye</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_SPHERE(System.Double,System.Single,System.Int32,System.Int32,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create wireframe sphere 
+            </summary>
+            <param name="Radius">Radius in real world measurements in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Lat">Latitude</param>
+            <param name="Long"></param>
+            <param name="Colour">Colour of sphere</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_DISK(System.Double,System.Double,System.Single,System.Int32,System.Int32,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create a filled disk
+            </summary>
+            <param name="InnerRadius">Inner radius</param>
+            <param name="OuterRadius">Outer radius</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Slices">No of slices</param>
+            <param name="Loops">No of loops</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_OUTLINE_DISK(System.Single,System.Single,System.Single,System.Int32,System.Int32,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create an outline disk
+            </summary>
+            <param name="InnerRadius">Inner radius</param>
+            <param name="OuterRadius">Outer radius</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Slices">No of slices</param>
+            <param name="Loops">No of loops</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_SQUARE(System.Single,System.Single,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create a filled square
+            </summary>
+            <param name="SideLength">Side length in real world measurements in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_OUTLINE_SQUARE(System.Single,System.Single,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create outline square
+            </summary>
+            <param name="SideLength">Side length in real world measurements in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_RECTANGLE(System.Single,System.Single,System.Single,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create a filled rectangle
+            </summary>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <param name="LineWidth"></param>
+            <param name="Colour"></param>
+            <param name="blend"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_CUBE_BACKGROUND(System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Create cube background
+            </summary>
+            <param name="Depth">Specifies maximum change in depth in metres for cubes from the plane when jittering cube position</param>
+            <param name="HorizontalSeparation">Specifies horizontal separation for cubes</param>
+            <param name="VerticalSeparation">Specifies vertical separation for cubes</param>
+            <param name="Jitter">Specifies maximum change in in-plane position for cubes when jittering</param>
+            <param name="CubesPerRow">Number of cubes per row</param>
+            <param name="CubesPerColumn">Number of cubes per column</param>
+            <param name="CavitySizeX">Extent in metres either side of from the middle of the screen in which cubes should not be shown</param>
+            <param name="CavitySizeY">Extent in metres above and below the middle of the screen in which cubes should not be shown</param>
+            <param name="DontStretchCubes">If true cubes maintain there aspect ration when scaled otherwise cubes are stretched randomly in different directions</param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_BACKGROUND(System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Create background of squares based on a grid
+            </summary>
+            <param name="Width">Total width in real world measurements in metres</param>
+            <param name="Height">Total height in real world measurements in metres</param>
+            <param name="thickness">Thickness - AEW what does this parameter mean?</param>
+            <param name="Cells_x">No of cells horizontally in the grid</param>
+            <param name="Cells_y">No of cells vertically in the grid</param>
+            <param name="Density">Density of cells</param>
+            <param name="BlackAndWhite">Cells are black and white if true otherwise just white</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_ALPHA_GAUSSIAN(System.Single,StereolabFX.RGBA,StereolabFX.OpenGlControl,System.Boolean)">
+            <summary>
+            Construct a call list which contains a gaussian blob at a specific size using only the alpha channel
+            </summary>
+            <remarks>
+            This function is unusual in that it needs to take an OpenGLControl object. The reason for this is that the function 
+            dynamically creates a texture file - AlphaGaussian.png and will create its own GL Context to do so. Once the file is created the context
+            is destroyed and there is no current context into which to draw. By passing an OpenGLControl as a parameter the active context can be set back into
+            the calling context instead.
+            
+            The Gaussian extends over 7 standard deviations and has a mean of 0 and a std deviation of 1.0.
+            The parameter WidthHalfHeight defines the size of the Gaussian blob when the gaussian value=0.5. The function will map the gaussian texture to a quad which
+            sets the gaussian value=0.5 at this value. E.g. if the WidthHalfHeight=1.0cm (.001f) then the extent of the quad will be 7/2.355 X WidthHalfHeight = approx 2.97cm (.00297f)
+            </remarks>
+            <param name="WidthHalfHeight">Width at half height in real world measurements in metres</param>
+            <param name="Colour">Colour for the opaque parts of the gaussian</param>
+            <param name="GlControl">OpenGLControl with which to associate the gaussian</param>
+            <param name="ForceRecreate">Set to true forces the gaussian image to be recreated every time</param>
+            <returns>display list ID for created gaussian</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_ALPHA_GAUSSIAN(System.Single,StereolabFX.RGBA,StereolabFX.OpenGlControl)">
+            <summary>
+            Create Gaussian blob using alpha channel texture
+            </summary>
+            <param name="WidthHalfHeight"></param>
+            <param name="Colour"></param>
+            <param name="GlControl"></param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_GAUSBLOB(System.Single,StereolabFX.RGBA,StereolabFX.RGBA,System.Int32,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create Gaussian blob using alpha channel texture
+            </summary>
+            <param name="BlobSize">Size of blob in real world measurements in metres</param>
+            <param name="BackColour">Background colour</param>
+            <param name="GaussColour">Colour of Gaussian</param>
+            <param name="Blob_resolution">Resolution</param>
+            <param name="Blob_crop">Crop position - 0 = no cropping</param>
+            <param name="Alpha">Create Gaussian using Alpha channel only</param>
+            <param name="blend">Enable blending - uses standard SRC_ALPHA, ONE_MINUS_SRC_ALPHA blend function</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_TEXTUREDSQUARE(System.Single,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            Create textured square without background colour
+            </summary>
+            <param name="SideLength">Side length in real world measurements in metres</param>
+            <param name="texture">Texture ID</param>
+            <param name="TextureScale">Texture scale factor</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_TEXTUREDSQUARE(System.Single,System.Int32,StereolabFX.RGBA,System.Single,System.Boolean)">
+            <summary>
+            Create a textured square
+            </summary>
+            <param name="SideLength">Side length in real world measurement in metres</param>
+            <param name="texture">OpenGL texture ID</param>
+            <param name="Colour">Colour</param>
+            <param name="TextureScale">Texture scale</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_OUTLINE_CUBE(System.Single,System.Single,StereolabFX.RGBA,System.Boolean)">
+            <summary>
+            Create a cube
+            </summary>
+            <param name="SideLength">Side length in real world measurements in metres</param>
+            <param name="LineWidth">Line width</param>
+            <param name="Colour">Colour</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.CREATE_TEXTUREDCUBE(System.Single,System.Int32,System.Single,System.Boolean)">
+            <summary>
+            Create a cube with a texture mapped to it
+            </summary>
+            <param name="SideLength">Side length in real world measurements in metres</param>
+            <param name="texture">texture ID</param>
+            <param name="TextureScale">texture scale factor</param>
+            <param name="blend">Support alpha channel</param>
+            <returns>display list ID for object</returns>
+        </member>
+        <member name="M:StereolabFX.GLCommonElements.TranslateAndCall(System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Short cut to translate to a particular position, call a display list and return to original position
+            </summary>
+            <param name="DisplayList">display list ID</param>
+            <param name="xpos">x coordinate to move to</param>
+            <param name="ypos">y coordinate to move to</param>
+            <param name="zpos">z coordinate to move to</param>
+        </member>
+        <member name="T:StereolabFX.GLCommonElements.Colours">
+            <summary>
+            Helpful constants for various colours
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.Black">
+            <summary>
+            Black
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.Red">
+            <summary>
+            Red
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.Green">
+            <summary>
+            Green
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.White">
+            <summary>
+            White
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.Grey">
+            <summary>
+            Grey
+            </summary>
+        </member>
+        <member name="F:StereolabFX.GLCommonElements.Colours.Blue">
+            <summary>
+            Blue
+            </summary>
+        </member>
+        <member name="F:StereolabFX.ScreenConfigControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.ScreenConfigControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.ScreenConfigControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:StereolabFX.Monitor">
+            <summary>
+            Encapsulates information about available monitors
+            </summary>
+        </member>
+        <member name="F:StereolabFX.Monitor.Number">
+            <summary>
+            Monitor number
+            </summary>
+        </member>
+        <member name="F:StereolabFX.Monitor.DeviceName">
+            <summary>
+            Monitor device name - assigned by Windows
+            </summary>
+        </member>
+        <member name="F:StereolabFX.Monitor.DC">
+            <summary>
+            Device context for monitor
+            </summary>
+        </member>
+        <member name="P:StereolabFX.Monitor.DisplayName">
+            <summary>
+            Monitor display name - usually Monitor 1 etc.
+            this is implemented as a property to allow enumerated monitors to appear in a list box
+            </summary>
+        </member>
+        <member name="T:StereolabFX.DisplaySetupFunctions">
+            <summary>
+            Functions to setup display area
+            </summary>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SystemParametersInfo(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Used to enable and disable screen saver
+            </summary>
+            <param name="uAction"></param>
+            <param name="uParam"></param>
+            <param name="lpvParam"></param>
+            <param name="fuWinIni"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SetDeviceGammaRamp(System.IntPtr,StereolabFX.DisplaySetupFunctions.RAMP@)">
+            <summary>
+            API call to set device gamma ramp
+            </summary>
+            <param name="hDC"></param>
+            <param name="lpRamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.GetDeviceGammaRamp(System.IntPtr,StereolabFX.DisplaySetupFunctions.RAMP@)">
+            <summary>
+            API call to get device gamma ramp
+            </summary>
+            <param name="hDC"></param>
+            <param name="lpRamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.GetDC(System.IntPtr)">
+            <summary>
+            API call to get device context
+            </summary>
+            <param name="hWnd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.DeleteDC(System.IntPtr)">
+            <summary>
+            API call to delete device context
+            </summary>
+            <param name="hdc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.CreateDC(System.String,System.String,System.String,System.IntPtr)">
+            <summary>
+            API call to create a new device context
+            </summary>
+            <param name="lpszDriver"></param>
+            <param name="lpszDevice"></param>
+            <param name="lpszOutput"></param>
+            <param name="lpInitData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.GetScreenSaverActive(System.Boolean@)">
+            <summary>
+            Determine if the screen saver is activated
+            </summary>
+            <param name="IsActive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SetScreenSaverActive">
+            <summary>
+            Enable screen saver - returns true if succeeds
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SetScreenSaverInActive">
+            <summary>
+            Disable screen saver - returns true if succeeds
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SETUP_VIEWPORT(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Setup the viewport calls glViewport
+            
+            </summary>
+            <param name="xpos">X position of origin of viewport</param>
+            <param name="ypos">Y position of origin of viewport</param>
+            <param name="Width">Width of viewport in pixels</param>
+            <param name="Height">Height of viewport in pixels</param>
+            <returns>Returns true if no OpenGL error</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SetStandardGLConfig(StereolabFX.DisplayParams,System.Boolean)">
+            <summary>
+            Setup standard OpenGL configuration which should be suitable in most cases
+            </summary>
+            <param name="SCR">Display area parameters</param>
+            <param name="testing">Set to false to enable GL_NICEST for POLYGON_SMOOTH_HINT</param>
+            
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.DO_VIEWPOINT(StereolabFX.DisplayParams,System.Single,System.Single,StereolabFX.DisplaySetupFunctions.FlipAxisEnum,StereolabFX.DisplaySetupFunctions.FlipAxisEnum)">
+            <summary>
+            Do viewpoint transformation. Calls glFrustum to setup perspective transformation
+            </summary>
+            <param name="SCR">Display area parameters</param>
+            <param name="xpos">offset in x position from origin</param>
+            <param name="ypos">offset in y position from origin</param>
+            <param name="LeftRight">Specify if the viewport should be flipped horizontally</param>
+            <param name="UpDown">Specify if the viewport should be flipped vertically</param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.Set_Perspective_Frustum(StereolabFX.DisplayParams,System.Single,System.Single)">
+            <summary>
+            Create the viewing frustum for the physical screen from a given position in space
+            This frustum creates a "parallax axis asymmetric frustum perspective projection"
+            (See Paul Bourke's webpages for the full description of the idea)
+            The OpenGL frustum command requires the size (left, right, top, bottom) of the *near* clipping plane
+            in our case - we start with the screen dimensions (the screen is fixed) - and use these to calculate
+            how big the near plane should be so that we completely fill the screen at the physical distance of
+            the display. We also specify the far clipping plane - but that's less important.
+            Other implmentations out there start with the field of view (i.e. as used in the glu libraries)
+            however - all the calculations work out the same (i.e. comparision of the method below and that on Bourke's site)
+            </summary>
+            <param name="SCR"></param>
+            <param name="xpos"></param>
+            <param name="ypos"></param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.DO_ORTHO_PHYSICAL(StereolabFX.DisplayParams,System.Single,System.Single,StereolabFX.DisplaySetupFunctions.FlipAxisEnum,StereolabFX.DisplaySetupFunctions.FlipAxisEnum)">
+            <summary>
+            Map the viewport to real world coordinates using orthographic projection
+            </summary>
+            <param name="SCR">Display area parameters</param>
+            <param name="xpos">offset in x position from origin</param>
+            <param name="ypos">offset in y position from origin</param>
+            <param name="LeftRight">Specify if the viewport should be flipped horizontally - this also flips the model view matrix</param>
+            <param name="UpDown">Specify if the viewport should be flipped vertically - this also flips the model view matrix</param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.DO_ORTHO_PIXEL(StereolabFX.DisplayParams,System.Single,System.Single,StereolabFX.DisplaySetupFunctions.FlipAxisEnum,StereolabFX.DisplaySetupFunctions.FlipAxisEnum)">
+            <summary>
+            Map the viewport to pixel coordinates using orthographic projection
+            </summary>
+            <param name="SCR">Display area parameters</param>
+            <param name="xpos">offset in x position from origin</param>
+            <param name="ypos">offset in y position from origin</param>
+            <param name="LeftRight">Specify if the viewport should be flipped horizontally - this also flips the model view matrix</param>
+            <param name="UpDown">Specify if the viewport should be flipped vertically - this also flips the model view matrix</param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.StereoLookAt(StereolabFX.DisplayParams,System.Single,System.Boolean)">
+            <summary>
+            This version is deprecated as it is not possible to explicitly specify if the view is mirrored
+            </summary>
+            <param name="SCR">Display area parameters</param>
+            <param name="iby2"></param>
+            <param name="LeftEye"></param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.StereoLookAt(StereolabFX.DisplayParams,System.Single,System.Single)">
+            <summary>
+            GluLookAt introduces more complication than is needed in our setting as eye position doesn't change
+            We can just use a call to glTranslate using -ve values of the parameters to move us away from the origin
+            </summary>
+            <param name="disp"></param>
+            <param name="xpos"></param>
+            <param name="ypos"></param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.StereoLookAt(System.Single,System.Single)">
+            <summary>
+            Stereo Look at function
+            </summary>
+            <param name="DistToScr">Distance to screen in real world measurements in metres</param>
+            <param name="xpos">x coordinate</param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.StereoLookAtGlu(StereolabFX.DisplayParams,System.Single,System.Single)">
+            <summary>
+            Don't need to use this unless you are trying to check StereoLookAt does the right thing!
+            </summary>
+            <param name="disp"></param>
+            <param name="xpos"></param>
+            <param name="ypos"></param>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.LeftEye_ColourMask">
+            <summary>
+            Set left eye colour mask for anaglyphs - RED
+            </summary>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.RightEye_ColourMask">
+            <summary>
+            Set ret eye colour mask for analglyphs - GREEN
+            </summary>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.Clear_ColourMask">
+            <summary>
+            Clear colour mask
+            </summary>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.GetMonitors">
+            <summary>
+            Iterate list of monitors connected to the system
+            </summary>
+            <returns>List of monitors - see Monitor class for details</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.ReleaseMonitors(System.Collections.Generic.List{StereolabFX.Monitor})">
+            <summary>
+            Releases device contexts for all monitors. This should be called during clean up if GetMonitors is called
+            </summary>
+            <param name="monitors"></param>
+            <returns>returns true if successful</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.LOAD_GAMMA(System.String,StereolabFX.Monitor)">
+            <summary>
+            Load Gamma correction from a file
+            </summary>
+            <param name="GammaFile">filename containing gamma table</param>
+            <param name="monitor">Monitor to apply correction to</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SET_DEFAULT_GAMMA(StereolabFX.Monitor)">
+            <summary>
+            Set default gamma table
+            </summary>
+            <param name="monitor">Monitor to apply gamma table to</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SET_DEFAULT_GAMMA_ALL">
+            <summary>
+            Set default gamma table to all monitors
+            </summary>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.SAVE_GAMMA(System.String,StereolabFX.Monitor)">
+            <summary>
+            Save current gamma table from specific monitor to a file
+            </summary>
+            <param name="FileName">filename to save to</param>
+            <param name="monitor">Monitor whose gamma table to save</param>
+            <returns>returns true if successful</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.ShiftToLSB(System.UInt16)">
+            <summary>
+            Convert ushort (16-bit value) by shifting upper 8-bits to lower 8-bits
+            Used for transparently making 16-bit gamma values into 8-bit gamma values
+            </summary>
+            <param name="value">value to convert</param>
+            <returns>converted value</returns>
+        </member>
+        <member name="M:StereolabFX.DisplaySetupFunctions.ShiftToMSB(System.UInt16)">
+            <summary>
+            Convert ushort (16-bit value) by shifting lower 8-bits to upper 8-bits
+            Used for transparently making 8-bit gamma values into 16-bit gamma values
+            </summary>
+            <param name="value">value to convert</param>
+            <returns>converted value</returns>
+        </member>
+        <member name="T:StereolabFX.DisplaySetupFunctions.FlipAxisEnum">
+            <summary>
+            determines if we want to flip the axis - used when viewing the screen in a mirror
+            </summary>
+        </member>
+        <member name="F:StereolabFX.DisplaySetupFunctions.FlipAxisEnum.NORMAL">
+            <summary>
+            Don't flip the axis
+            </summary>
+        </member>
+        <member name="F:StereolabFX.DisplaySetupFunctions.FlipAxisEnum.REVERSE">
+            <summary>
+            Flip the axis
+            </summary>
+        </member>
+        <member name="T:StereolabFX.DisplaySetupFunctions.RAMP">
+            <summary>
+            Gamma Ramp Windows API structure
+            </summary>
+        </member>
+        <member name="F:StereolabFX.DisplaySetupFunctions.RAMP.Red">
+            <summary>
+            Red component
+            </summary>
+        </member>
+        <member name="F:StereolabFX.DisplaySetupFunctions.RAMP.Green">
+            <summary>
+            Green component
+            </summary>
+        </member>
+        <member name="F:StereolabFX.DisplaySetupFunctions.RAMP.Blue">
+            <summary>
+            Blue component
+            </summary>
+        </member>
+        <member name="T:StereolabFX.StereoModeEnum">
+            <summary>
+            Enumeration of stereo mode
+            </summary>
+        </member>
+        <member name="T:StereolabFX.MirrorScreenEnum">
+            <summary>
+            Enumeration of whether screen is mirrored or not
+            </summary>
+        </member>
+        <member name="T:StereolabFX.MiscFunctions">
+            <summary>
+            Miscellaneous functions that don't fit elsewhere
+            </summary>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.LoadGLTextureDebug(System.String)">
+             <summary>
+             Create OpenGL texture from file - use this to debug problems with LoadGLTexture.
+            
+             </summary>
+             <param name="file_name">Texture file</param>
+             <returns>OpenGl texture ID if successful or 0 if not</returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.LoadGLTexture(System.String)">
+            <summary>
+            Create an OpenGL texture from a file
+            </summary>
+            <param name="file_name">file containing texture bitmap</param>
+            <returns>OpenGl texture ID if successful or 0 if not</returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.CAPTURE_IMAGE_TO_TEXTURE(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Capture image from current GL context to a texture
+            </summary>
+            <param name="Channels">Channels to capture into texture- e.g. Gl.GL_ALPHA, Gl.GL_RGBA etc.</param>
+            <param name="TextureFunction">e.g. Gl.GL_BLEND, Gl.GL_MODULATE - for transparent textures use Gl.GL_BLEND</param>
+            <param name="x"> x coordinate for lower left corner of area to capture</param>
+            <param name="y">y coordinate for lower left corner of area to capture</param>
+            <param name="Width">Width of area to capture</param>
+            <param name="Height">Height of area to capture</param>
+            <returns>Texture ID for captured texture</returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.CalcDisparityFromDist(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="zdist"></param>
+            <param name="ipd"></param>
+            <param name="viewdist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.CalcDistFromDisparity(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="disp_Deg"></param>
+            <param name="ipd"></param>
+            <param name="viewdist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.RayTraceGL_ScreenPos_X(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Calculate the in-screen-plane distance from the centre of the screen of a point located (xpos, zpos) from the screen centre
+            +ve value of xpos is to the right. +ve value of zpos is *OUT* of the screen; -ve value of zpos is INTO the screen
+            Based on Equation 2 from Howard and Rogers volume 2, p.541 - but note the standard convention of -ve is closer than the screen doesn't hold
+            i.e. - we use screen-, rather than eye-, centred coordinates
+            </summary>
+            <param name="xpos"></param>
+            <param name="zpos">Positive values for objects closer than the screen</param>
+            <param name="eyepos_x"></param>
+            <param name="viewdist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.RayTraceGL_ScreenPos_Y(System.Double,System.Double,System.Double)">
+            <summary>
+            Calculate the in-screen-plane distance from the centre of the screen of a point located (ypos, zpos) from the screen centre
+            +ve value of ypos is up. +ve value of zpos is *OUT* of the screen; -ve value of zpos is INTO the screen
+            Based on Equation 2 from Howard and Rogers volume 2, p.541 - but note the standard convention of -ve is closer than the screen doesn't hold
+            i.e. - we use screen-, rather than eye-, centred coordinates
+            </summary>
+            <param name="ypos"></param>
+            <param name="zpos">Positive values for objects closer than the screen</param>
+            <param name="viewdist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.RayTrace_ScreenPos_X(System.Double,System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="xpos_world"></param>
+            <param name="zdist_fromScreen"></param>
+            <param name="ipd"></param>
+            <param name="viewdist"></param>
+            <param name="eye"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.RayTrace_ScreenPos_Y(System.Double,System.Double,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="ypos_world"></param>
+            <param name="zdist_fromScreen"></param>
+            <param name="viewdist"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StereolabFX.MiscFunctions.DegtoRad(System.Double)">
+            <summary>
+            convert degrees to radians
+            </summary>
+            <param name="degrees"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StereolabFX.OpenGlControl">
+            <summary>
+                Provides a simple OpenGL control allowing quick development of Windows Forms-based
+                OpenGL applications.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.#ctor">
+            <summary>
+                Constructor.  Creates contexts and sets properties.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.Dispose(System.Boolean)">
+            <summary>
+                Disposes the control.
+            </summary>
+            <param name="disposing">Was the disposed manually called?</param>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.InitializeBackground">
+            <summary>
+                Loads the bitmap from the assembly's manifest resource.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.InitializeComponent">
+            <summary>
+                Required for designer support.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.InitializeStyles">
+            <summary>
+                Initializes the control's styles.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.DestroyContexts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.Draw">
+            <summary>
+                Sends an see cref="UserControl.Invalidate"  command to this control, thus
+                forcing a redraw to occur.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.InitializeContexts">
+            <summary>
+                Creates the OpenGL contexts.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.MakeCurrent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.SwapBuffers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+                Paints the control.
+            </summary>
+            <param name="e">The paint event arguments.</param>
+        </member>
+        <member name="M:StereolabFX.OpenGlControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+                Paints the background.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AccumBits">
+            <summary>
+                Gets and sets the OpenGL control's accumulation buffer depth.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AlphaBits">
+            <summary>
+                Gets and sets the OpenGL control's alpha bitplanes
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.ColorBits">
+            <summary>
+                Gets and sets the OpenGL control's color buffer depth.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.DepthBits">
+            <summary>
+                Gets and sets the OpenGL control's depth buffer (Z-buffer) depth.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.StencilBits">
+            <summary>
+                Gets and sets the OpenGL control's stencil buffer depth.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AutoCheckErrors">
+            <summary>
+                Gets and sets the OpenGL control's automatic sending of a glGetError command
+                after drawing.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AutoFinish">
+            <summary>
+                Gets and sets the OpenGL control's automatic sending of a glFinish command
+                after drawing.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AutoMakeCurrent">
+            <summary>
+                Gets and sets the OpenGL control's automatic forcing of the rendering context to
+                be current before drawing.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.AutoSwapBuffers">
+            <summary>
+                Gets and sets the OpenGL control's automatic sending of a SwapBuffers command
+                after drawing.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.RenderingContext">
+            <summary>
+            Rendering context
+            </summary>
+        </member>
+        <member name="P:StereolabFX.OpenGlControl.CreateParams">
+            <summary>
+                Overrides the control's class style parameters.
+            </summary>
+        </member>
+        <member name="T:StereolabFX.DisplayType">
+            <summary>
+            Struct for identifying parameters of the display area
+            
+            <param>Width, Height - real world measurements of width and height of display area in metres</param>
+            
+            <param>Distance - real world distance the display area is viewed from in metres</param>
+            <param>Pix_Width, Pix_Height - width and height in pixels of the display area</param>
+            </summary>
+        </member>
+        <member name="T:StereolabFX.DisplayParams">
+            
+        </member>
+        <member name="T:StereolabFX.TimerMode">
+            <summary>
+            Defines constants for the multimedia Timer's event types.
+            </summary>
+        </member>
+        <member name="F:StereolabFX.TimerMode.OneShot">
+            <summary>
+            Timer event occurs once.
+            </summary>
+        </member>
+        <member name="F:StereolabFX.TimerMode.Periodic">
+            <summary>
+            Timer event occurs periodically.
+            </summary>
+        </member>
+        <member name="T:StereolabFX.TimerCaps">
+            <summary>
+            Represents information about the multimedia Timer's capabilities.
+            </summary>
+        </member>
+        <member name="F:StereolabFX.TimerCaps.periodMin">
+            <summary>
+            Minimum supported period in milliseconds.
+            </summary>
+        </member>
+        <member name="F:StereolabFX.TimerCaps.periodMax">
+            <summary>
+            Maximum supported period in milliseconds.
+            </summary>
+        </member>
+        <member name="T:StereolabFX.Timer">
+            <summary>
+            Represents the Windows multimedia timer.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.Timer.#cctor">
+            <summary>
+            Initialize class.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.Timer.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Initializes a new instance of the Timer class with the specified IContainer.
+            </summary>
+            <param name="container">
+            The IContainer to which the Timer will add itself.
+            </param>
+        </member>
+        <member name="M:StereolabFX.Timer.#ctor">
+            <summary>
+            Initializes a new instance of the Timer class.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.Timer.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StereolabFX.Timer.Start">
+            <summary>
+            Starts the timer.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            The timer has already been disposed.
+            </exception>
+            <exception cref="T:StereolabFX.TimerStartException">
+            The timer failed to start.
+            </exception>
+        </member>
+        <member name="M:StereolabFX.Timer.Stop">
+            <summary>
+            Stops timer.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            If the timer has already been disposed.
+            </exception>
+        </member>
+        <member name="M:StereolabFX.Timer.Dispose">
+            <summary>
+            Frees timer resources.
+            </summary>
+        </member>
+        <member name="E:StereolabFX.Timer.Started">
+            <summary>
+            Occurs when the Timer has started;
+            </summary>
+        </member>
+        <member name="E:StereolabFX.Timer.Stopped">
+            <summary>
+            Occurs when the Timer has stopped;
+            </summary>
+        </member>
+        <member name="E:StereolabFX.Timer.Tick">
+            <summary>
+            Occurs when the time period has elapsed.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.Timer.SynchronizingObject">
+            <summary>
+            Gets or sets the object used to marshal event-handler calls.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.Timer.Period">
+            <summary>
+            Gets or sets the time between Tick events.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            If the timer has already been disposed.
+            </exception>   
+        </member>
+        <member name="P:StereolabFX.Timer.Resolution">
+            <summary>
+            Gets or sets the timer resolution.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            If the timer has already been disposed.
+            </exception>        
+            <remarks>
+            The resolution is in milliseconds. The resolution increases 
+            with smaller values; a resolution of 0 indicates periodic events 
+            should occur with the greatest possible accuracy. To reduce system 
+            overhead, however, you should use the maximum value appropriate 
+            for your application.
+            </remarks>
+        </member>
+        <member name="P:StereolabFX.Timer.Mode">
+            <summary>
+            Gets the timer mode.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            If the timer has already been disposed.
+            </exception>
+        </member>
+        <member name="P:StereolabFX.Timer.IsRunning">
+            <summary>
+            Gets a value indicating whether the Timer is running.
+            </summary>
+        </member>
+        <member name="P:StereolabFX.Timer.Capabilities">
+            <summary>
+            Gets the timer capabilities.
+            </summary>
+        </member>
+        <member name="E:StereolabFX.Timer.Disposed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:StereolabFX.Timer.Site">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:StereolabFX.TimerStartException">
+            <summary>
+            The exception that is thrown when a timer fails to start.
+            </summary>
+        </member>
+        <member name="M:StereolabFX.TimerStartException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the TimerStartException class.
+            </summary>
+            <param name="message">
+            The error message that explains the reason for the exception. 
+            </param>
+        </member>
+    </members>
+</doc>
