@@ -1,5 +1,3 @@
-# Colourspace models
+# Kymata Atlas equiptment testing code
 
-A modified version of JETIApp which loads colour values from a file rather than generating them.
-
-Used to create visual-domain functions which describe what participants actually saw on the screen.
+The code used for the testing of equiptment or measurement error during the collection of Kymata Datasets
