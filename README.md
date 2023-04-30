@@ -8,5 +8,5 @@ These include:
    - Generation of gamma correction tables
    - CIE1931 XYZ coordinates for any arbitrary array of [R,G,B] colour values
  - Measurements to ascertain projector latency delay
- - Measurements for ascertain audio latency delay
- - Headphone frequency responses
+ - Measurements to ascertain audio latency delay
+ - Headphone frequency responses measurements
