@@ -1,7 +1,7 @@
 
-# SpyderX Elite colorimenter measurements
+# SpyderX Elite colorimeter measurements
 
-This repository contains three scripts that use a SpyderX Elite colorimenter to measure colour wavelenths for using in neuroimanaging experiemtns: 1) to create a gamma correction table, 2) to test a gamma table and 3) to asscertain the CIE 1931 XYZ values from arbitrary array of RGB values.
+This repository contains three scripts that use a SpyderX Elite colorimeter to measure colour wavelengths for using in neuroimanging experiments: 1) to create a gamma correction table, 2) to test a gamma table and 3) to ascertain the CIE 1931 XYZ values from arbitrary array of RGB values.
 
 It requires three things to run:
 
@@ -13,18 +13,14 @@ Please visit these resources for OS differences.
 
 ## Gamma table creation
 
-create_gamma_table.m
+`create_gamma_table.m`
 
 This script is a simple wrapper for Zhicheng Lin, Qi Ma and Yang Zhang's gamma table creation code.
 
-## Gamma table testing
+It also gives the wrapper code for verifying the gamma correction table works correctly when used in Psychtoolbox.
 
-test_gamma_table_correction.m
+## CIE 1931 XYZ measurements of arbitrary [R,G,B] values in an array using an SpyderX Elite Brontes colorimeter
 
-This script is a simple wrapper for Zhicheng Lin, Qi Ma and Yang Zhang's code that ensures the above gamma table works correctly whe used in Psychtoolbox.
-
-## CIE 1931 XYZ measurements of arbitrary [R,G,B] values in an array using an SpyderX Elite Brontes colorimenter
-
-obtain_CIEXYZ_values_of_RGB_array.m
+`obtain_CIEXYZ_values_of_RGB_array.m`
 
 This script accepts a) a gamma correction table and b) a list of RGB values, and generates the CIEXYZ 1931 XYZ coordinates for them (required for use in colour vision studies). Each colour has several measurements taken and the average is then given.
