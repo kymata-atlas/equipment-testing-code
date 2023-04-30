@@ -1,5 +1,5 @@
 
-# SpyderX Elite colorimeter measurements
+# SpyderX Elite Colorimeter Measurements
 
 This repository contains three scripts that use a SpyderX Elite colorimeter to measure colour wavelengths for using in neuroimanging experiments: 1) to create a gamma correction table, 2) to test a gamma table and 3) to ascertain the CIE 1931 XYZ values from arbitrary array of RGB values.
 
