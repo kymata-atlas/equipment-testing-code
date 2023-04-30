@@ -1,6 +1,6 @@
 # Kymata Atlas equipment testing code
 
-The code used for the testing of equipment and/or measurement error during the collection of Kymata Datasets.
+The code used for the testing of equipment and/or measurement error during the collection of Kymata neuroimaging datasets.
 
 These include:
 
