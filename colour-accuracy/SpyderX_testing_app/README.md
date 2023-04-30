@@ -11,7 +11,7 @@ It requires three things to run:
 
 Please visit these resources for OS differences.
 
-## Gamma table creation
+## Gamma table creation using an SpyderX Elite colorimeter
 
 `create_gamma_table.m`
 
@@ -19,7 +19,7 @@ This script is a simple wrapper for Zhicheng Lin, Qi Ma and Yang Zhang's gamma t
 
 It also gives the wrapper code for verifying the gamma correction table works correctly when used in Psychtoolbox.
 
-## CIE 1931 XYZ measurements of arbitrary [R,G,B] values in an array using an SpyderX Elite Brontes colorimeter
+## CIE 1931 XYZ measurements of arbitrary [R,G,B] values in an array using an SpyderX Elite colorimeter
 
 `obtain_CIEXYZ_values_of_RGB_array.m`
 
