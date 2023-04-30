@@ -15,9 +15,9 @@ Please visit these resources for OS differences.
 
 `create_gamma_table.m`
 
-This script is a wrapper for [PsyCalibrator](https://github.com/yangzhangpsy/PsyCalibrator))'s gamma table creation for use in the EMEG Lab.
+This script is a wrapper for [PsyCalibrator](https://github.com/yangzhangpsy/PsyCalibrator)'s gamma table creation for use in the EMEG Lab.
 
-It also gives uses [PsyCalibrator](https://github.com/yangzhangpsy/PsyCalibrator)) to verify the gamma correction table works correctly when used in Psychtoolbox.
+It also gives uses [PsyCalibrator](https://github.com/yangzhangpsy/PsyCalibrator) to verify the gamma correction table works correctly when used in Psychtoolbox.
 
 ## CIE 1931 XYZ measurements of arbitrary [R,G,B] values in an array using an SpyderX Elite colorimeter
 
