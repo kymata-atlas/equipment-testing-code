@@ -8,18 +8,31 @@ function output_XYZ_values = obtain_CIEXYZ_values_of_RGB_array()
 
 % Instructions
 % -----
-% please install Psychtoolbox (free software available at http://psychtoolbox.org)
+% Install Psychtoolbox (free software available at http://psychtoolbox.org)
+% Download PsyCalibrator and place it in a suitable location (free at: https://github.com/yangzhangpsy/PsyCalibrator)
+% 
+% If you are on a Mac you will need to install libusb (i.e through brew) >> brew install libusb
+% You will need to copy the file spyderRead_APL_xyz.m into
+% PsyCalibrator-main/PsyCalibrator
+%
+% Make equipment-testing-code/colour-accuracy/SpyderX_testing_app/ your
+% working directory. Then run this script.
 
+% to record the xyY values instead of CIE1931 XYZ values, replace
+% >>   multiple_CIE_XYZ_spyder_readings = spyderRead_APL_xyz(refreshRate, nMeasures);
+% with
+% >>   multiple_CIE_XYZ_spyder_readings = spyderRead_APL(refreshRate, nMeasures);
+
+psycalibrator_location = 'matlab_libraries'; % this is the location of PsyCalibrator-main, reletive to your working directory
 name_of_rgb_csv_to_measure = "data/test_file_rgb_color_array.csv";
-name_of_rgb_gamma_correction_norms = "rgb_gamma_correction_norms.csv";
-
-nMeausres = 5; % definition of the number of measurements
-refreshRate = 60; % definition of the refresh rate of the screen
+name_of_rgb_gamma_correction_norms = "data/Kymata_test_screen_gamma_correction_tables/2023_rgb_gamma_correction_norms.csv";
+nMeasures = 5; % definition of the number of measurements
 
 % load data
 rgb_gamma_correction_norms = load(name_of_rgb_gamma_correction_norms);
 list_of_rgb_values = load(name_of_rgb_csv_to_measure);
 
+addpath(genpath(psycalibrator_location)); savepath;
 
 %%%%%%%%%%%%%
 % begin
@@ -31,7 +44,8 @@ try
     Screen('Preference', 'SkipSyncTests', 1);
     Screen('Preference', 'VisualDebugLevel', 0);
     Screen('Preference', 'Verbosity', 0);
-    
+
+    whichScreen = max(Screen('Screens'));    
     fullRect = Screen('Rect', whichScreen);
     perperialRect = CenterRectOnPoint([0 0 500 500],fullRect(3)/2,fullRect(4)/2);
 
@@ -41,8 +55,6 @@ try
     Stimuli.White = WhiteIndex(whichScreen);%
     Stimuli.Black = BlackIndex(whichScreen); %
     Stimuli.Gray  = [128,128,128];%(Stimuli.White+Stimuli.Black)/2;
-    
-    pause;
     
     gammaTableBack = Screen('ReadNormalizedGammaTable', whichScreen);
     
@@ -76,7 +88,7 @@ try
                
     Screen('FillRect',w,Stimuli.Gray,ScreenRect);
 
-    currentRect = perperialRect(:,1)';
+    currentRect = perperialRect;
 
     ovalLength  = min(abs([currentRect(3) - currentRect(1), currentRect(4) - currentRect(2)]));
 
@@ -92,7 +104,7 @@ try
 
     abortExp(whichScreen,gammaTableBack,EscapeKey);
 
-    InitialStr = ['The automatic measurement will start in ',num2str(LeaveTime),' seconds!'];
+    InitialStr = 'The automatic measurement will start in 10 seconds!';
 
     Screen('FillRect',w,[0 0 0],ScreenRect);
     DrawFormattedText(w,InitialStr,'center',ScreenRect(4)*0.8,Stimuli.White);
@@ -102,51 +114,42 @@ try
     Screen('Flip',w);
 
     abortExp(whichScreen,gammaTableBack,EscapeKey);
-    WaitSecs(LeaveTime);
+    WaitSecs(10);
 
     fprintf('========== Begin measurement =============\n');
 
-    [xyY,usedRGBs] = deal(zeros(size(data,1)*nMeasures,3));
+    [CIE_XYZ,usedRGBs] = deal(zeros(size(list_of_rgb_values,1),3));
 
     for iRGB = 1:size(list_of_rgb_values,1)
-        abortExp(whichScreen,gammaTableBack,EscapeKey);
+        %abortExp(whichScreen,gammaTableBack,EscapeKey);
 
         Screen('FillRect',w,Stimuli.Gray,ScreenRect);
-        Screen('FillRect',w,data(iRGB,:),currentRect);
+        Screen('FillRect',w,list_of_rgb_values(iRGB,:),currentRect);
         Screen('Flip',w);
 
-        for iM = 1:nMeausres
-
-            if iM == 1
-                WaitSecs(0.1);
-            end
-
-            abortExp(w,gammaTableBack,EscapeKey);
+        WaitSecs(0.1);
+        
+        abortExp(w,gammaTableBack,EscapeKey);
 
 
-            % spyder 5 or X
-            CIE_XYZ = spyderRead_APL(refreshRate, 1);
-            CIE_XYZ((iRGB-1)*nMeasures + iM,:)  = mean(CIE_XYZ,1);
+        % spyder 5 or X
+        multiple_CIE_XYZ_spyder_readings = spyderRead_APL_xyz(refreshRate, nMeasures);
 
-            usedRGBs((iRGB-1)*nMeasures + iM,:) = data(iRGB,:);
-            fprintf('iRGB %3d:%4d %4d %4d: iMeasure:%4d xyY: %5.3f %5.3f %5.3f\n',iRGB,data(iRGB,1),data(iRGB,2),data(iRGB,3),iM,xyY(iRGB,1),xyY(iRGB,2),xyY(iRGB,3));
+        CIE_XYZ(iRGB,:)  = mean(multiple_CIE_XYZ_spyder_readings,1);
+        usedRGBs(iRGB,:) = list_of_rgb_values(iRGB,:);
+        fprintf('iRGB %3d:%4d %4d %4d: CIE_XYZ: %5.3f %5.3f %5.3f\n',iRGB,list_of_rgb_values(iRGB,1),list_of_rgb_values(iRGB,2),list_of_rgb_values(iRGB,3),CIE_XYZ(iRGB,1),CIE_XYZ(iRGB,2),CIE_XYZ(iRGB,3));
 
-        end
+
 
         %========= measure end==============
     end % iRGB
 
     beep;
 
-    if iLoc == size(perperialRect,2)
-        fprintf('=============================================================\n');
-        fprintf('               All test locations finished  !\n');
-        fprintf('=============================================================\n');
-    else
-        fprintf('=============================================================\n');
-        fprintf('Change to the next location, then press any key to continue...\n'  );
-        pause;
-    end
+
+    fprintf('=============================================================\n');
+    fprintf('               All test locations finished  !\n');
+    fprintf('=============================================================\n');
 
     output_XYZ_values = [usedRGBs,CIE_XYZ];
     
@@ -156,7 +159,7 @@ try
     Screen('LoadNormalizedGammaTable',whichScreen,gammaTableBack);
     ShowCursor;
     
-    save(outputFilename,'output_XYZ_values');
+    csvwrite("output_XYZ_values.csv",output_XYZ_values)
     fprintf('----------------------------\n');
     fprintf('Data have been saved!\n');
     fprintf('----------------------------\n');
@@ -171,3 +174,16 @@ catch obtain_CIEXYZ_values_of_RGB_array_error
     rethrow(obtain_CIEXYZ_values_of_RGB_array_error);
 end % try
 end % end  for function
+
+function abortExp(whichScreen,gammaTableBack,EscapeKey)
+[~,~,keyCode] = KbCheck;
+
+    if keyCode(EscapeKey)
+        sca;
+        ShowCursor;
+        Priority(0);
+        Screen('LoadNormalizedGammaTable',whichScreen,gammaTableBack);
+        error('Test aborted by the experimenter!');
+    end
+
+end

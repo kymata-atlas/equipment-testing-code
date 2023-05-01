@@ -1,7 +1,4 @@
-function xyY = CIEXYZ_spyderRead_APL(refreshRate, nMeasures)
-
-% Fork of spyderRead_APL that returns CIE XYZ instead of CIE xyY (the conversion)
-
+function xyY = spyderRead_APL_2(refreshRate, nMeasures)
 % under linux, before runing this function, install the argyll first via the following commands in the terminal:
 % sudo apt-get install argyll
 % although it works, it do cost much more time than colorCal by around 8000 ms for each measures
@@ -25,7 +22,7 @@ try
     elseif IsLinux
         commandStr = [fullfile(cFolder,'spotread'),' -e -O -x -N'];
     else % mac ox
-        commandStr = [fullfile(cFolder,'spsotreadsMac','spotread'),' -e -O -x -N'];
+        commandStr = [fullfile(cFolder,'spotreadsMac','spotread'),' -e -O -x -N'];
     end
     
     xyY      = zeros(nMeasures,3);
@@ -53,7 +50,7 @@ try
 
             nMaxMeasures = nMaxMeasures + 1;
         end
-        % xyY(iM,:) = XYZToxyY(XYZ)';
+        xyY(iM,:) = XYZ';
 
     end
     
