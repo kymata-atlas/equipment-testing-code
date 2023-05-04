@@ -8,7 +8,7 @@ AssertOpenGL;
 %  visual stimulus.
 %   
 %  This will test accurracy in two ways: using tic, and toc, and sending
-%  triggers to the MEG machine.
+%  triggers to the MEG machine. Using tic/toc appears to add 2 ms.
 %
 %  Instuctions for use in MEG CBU:
 %
@@ -55,13 +55,13 @@ MEG.SendTrigger(0); %%set to 0
 
 %set up variables
 
-times = zeros(100,1);
+times = zeros(10,1);
 
 % run
 
 Screen('FillRect', window, black, [0 0 W H]);
 vbl=Screen('Flip', window);
-wait(4000);
+WaitSecs(4);
 MEG.SendTrigger(0); % set as zero
 
 
@@ -71,19 +71,22 @@ for i = 1:length(times)
     Screen('FillRect', window, black, [0 0 W H]);
     Screen('Flip', window);
 
-    wait(500);
+    WaitSecs(5);
 
     Screen('FillRect', window, white, [0 0 W H]);
 
+    vbl=Screen('Flip', window, vbl + (0.5)*ifi); % sending white to projector
+    
+    % Whether the position of the trigger is in front or behind the
+    % flip makes a big differnce - make sure this is the same as your actual expermental code.
+    
+    tic % Using tic/toc appears to add 2 ms compared with the triggers.
     MEG.SendTrigger(1);
-    tic
-    Screen('Flip', window); % sending white to projector
 
+    
     MEG.WaitForButtonPress(); % as the diode is plugged into the Left Hand yellow box
-        if strcmp('LY', MEG.LastButtonPress)==1 % if the diode ("the left hand button") is "pressed"
-            times(i) = toc; % when projector goes white/participant gets white
-        end
-    end
+    times(i) = toc; % when projector goes white/participant gets white
+    
 
     MEG.SendTrigger(0); % set back as zero
 
