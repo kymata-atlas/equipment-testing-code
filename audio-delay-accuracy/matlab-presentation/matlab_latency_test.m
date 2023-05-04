@@ -24,6 +24,17 @@ MySoundHandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, chan
 
 PsychPortAudio('FillBuffer', MySoundHandle, wavedata');
 
+    
+    % Perform one warmup trial, to get the sound hardware fully up and running,
+    % performing whatever lazy initialization only happens at real first use.
+    % This "useless" warmup will allow for lower latency for start of playback
+    % during actual use of the audio driver in the real trials:
+    %PsychPortAudio('Start', MySoundHandleA, 1, 0, 1);
+    %PsychPortAudio('Stop', MySoundHandleA, 1);
+    
+
+
+
 MEG = MEGSynchClass;
 MEG.SendTrigger(0);
 WaitSecs(0.5);

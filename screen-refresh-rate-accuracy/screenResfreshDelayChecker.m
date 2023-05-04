@@ -6,8 +6,23 @@ AssertOpenGL;
 %
 %  Screen refresh delay-checker for matlab/pystoolbox
 %  visual stimulus.
+%   
+%  This will test accurracy in two ways: using tic, and toc, and sending
+%  triggers to the MEG machine.
 %
-%  AT 24/06/14
+%  Instuctions for use in MEG CBU:
+%
+%  1) Plug Photodiode into the Left Yellow button box port – this uses channel 10
+%  (i.e., it comes through on STI010, or equates to value 512 if you re
+%  reading from the combined channel [i.e., STI101]). The box where I plug this into is
+%  where all the cables for each of the buttons comprising the button boxes are
+%  plugged in – I just unplug cable for the Left Yellow button and plug in the
+%  photodiode into its spot. Then I turn the photodiode on (it is rarely plugged
+%  in and on by default).
+%
+%  2) Run this script.
+%
+%  AT 04/04/2023
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -35,13 +50,8 @@ end;
 fps
 ifi
 
-% set up parallel ports
-
-task.ppaddr = hex2dec('378');  % LPT1
-% initialize at beginning
-task.ioObj = io32;
-io32status = io32(task.ioObj);
-task.BB.address = hex2dec('379');  % LPT1
+MEG=MEGSynchClass; %%initialise CBU MEG
+MEG.SendTrigger(0); %%set to 0
 
 %set up variables
 
@@ -52,48 +62,36 @@ times = zeros(100,1);
 Screen('FillRect', window, black, [0 0 W H]);
 vbl=Screen('Flip', window);
 wait(4000);
+MEG.SendTrigger(0); % set as zero
 
-%photodiodeCurrentArray = [];
 
+% do test of flips
 for i = 1:length(times)
-
-     Screen('FillRect', window, black, [0 0 W H]);
-     Screen('Flip', window);
     
-     wait(500);
-     
-     photodiodeBlackvalue = io32(task.ioObj, task.BB.address);
-     
-     Screen('FillRect', window, white, [0 0 W H]);
-     Screen('Flip', window); % sending white to projector
-     tic; % starting/trigger
-     
-     
-     photodiode = 0;    
+    Screen('FillRect', window, black, [0 0 W H]);
+    Screen('Flip', window);
 
-     while(photodiode == 0)
-        photodiodeCurrent = io32(task.ioObj, task.BB.address);
-        %photodiodeCurrentArray = [photodiodeCurrentArray photodiodeCurrent];
-        if (photodiodeCurrent ~= photodiodeBlackvalue)
+    wait(500);
+
+    Screen('FillRect', window, white, [0 0 W H]);
+
+    MEG.SendTrigger(1);
+    tic
+    Screen('Flip', window); % sending white to projector
+
+    MEG.WaitForButtonPress(); % as the diode is plugged into the Left Hand yellow box
+        if strcmp('LY', MEG.LastButtonPress)==1 % if the diode ("the left hand button") is "pressed"
             times(i) = toc; % when projector goes white/participant gets white
-            photodiode = 1;  
-        end        
-     end
-     
+        end
+    end
+
+    MEG.SendTrigger(0); % set back as zero
+
 end
-
-
-Priority(0);
-ShowCursor
-Screen('CloseAll');
 
 for i = 1:length(times)
-   disp([ 'photodiodeCurrent:' i '=' num2str(times(i))]); 
+    disp([ 'photodiodeCurrent:' i '=' num2str(times(i))]);
 end
-
-%for i = 1:length(photodiodeCurrentArray)
-%   disp([ 'photodiodeCurrentArray:' i '=' num2str(photodiodeCurrentArray(i))]); 
-%end
 
 % display answer
 disp(['mean:' num2str(mean(times)) 'ms']);
@@ -102,27 +100,34 @@ disp(['lowest:' num2str(min(times)) 'ms']);
 
 hist(times);
 
+
+Priority(0);
+ShowCursor
+Screen('CloseAll');
+
+
 end
 
 
 
 function key_pressed = getkey(task)
+
 % This function listens for key presses
 
-buttonpressed = 0;
-
-% Loop until a button is pressed
-while (buttonpressed == 0)
-        
-    % Listen for Esc from computer to see if the paradigm wants to be
-    % aborted
-    [keyIsDown, secs, keyCode] = KbCheck(); % Listen for key press
-    if keyCode(27) == 1
-        disp('Esc pressed')
-        KbName(keyCode)
-        Screen('CloseAll');
-    end
+    buttonpressed = 0;
     
-end
+    % Loop until a button is pressed
+    while (buttonpressed == 0)
+            
+        % Listen for Esc from computer to see if the paradigm wants to be
+        % aborted
+        [keyIsDown, secs, keyCode] = KbCheck(); % Listen for key press
+        if keyCode(27) == 1
+            disp('Esc pressed')
+            KbName(keyCode)
+            Screen('CloseAll');
+        end
+        
+    end
 
 end
