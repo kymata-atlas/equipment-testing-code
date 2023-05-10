@@ -4,4 +4,4 @@
 
 For the CBU MEG Propixx projector, the results are:
 
-<img src="assets/overview_graphic.png" width="604" height="363">
+<img src="assets/CBU_results.png" width="604" height="363">
