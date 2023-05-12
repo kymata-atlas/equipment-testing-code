@@ -1,4 +1,4 @@
-function screenResfreshDelayChecker
+function screen_refresh_delay_checker
 
     AssertOpenGL;
 
@@ -7,28 +7,38 @@ function screenResfreshDelayChecker
     %  Screen refresh delay-checker for matlab/pystoolbox
     %  visual stimulus.
     %   
-    %  This will test accurracy in two ways: using tic, and toc, and sending
-    %  triggers to the MEG machine. Using tic/toc appears to add 2 ms.
+    %  This will test accurracy in two ways: a) recording the  the response from the
+    %  photodiode as mesured by the MEGsynchclass as a button trigger, and b) sending
+    %  triggers to the MEG machine, so that both triggers can be compared.
+    %  Note that approach a) adds about 0.5 ms to the response time, so b) is a better
+    %  estimate. 
     %
     %  Instuctions for use in MEG CBU:
     %
-    %  1) Plug Photodiode into the Left Yellow button box port – this uses channel 10
-    %  (i.e., it comes through on STI010, or equates to value 512 if you re
-    %  reading from the combined channel [i.e., STI101])*. The box where I plug this into is
-    %  where all the cables for each of the buttons comprising the button boxes are
-    %  plugged in – I just unplug cable for the Left Yellow button and plug in the
-    %  photodiode into its spot. Then I turn the photodiode on (it is rarely plugged
-    %  in and on by default).
+    %  1) Plug the Photodiode into the Left Yellow button box port – this
+    %  uses channel 10 (i.e., it comes through on STI010, or equates to
+    %  value 512 if you're reading from the combined channel
+    %  [i.e., STI101])*. The box where we plug this into is where all the
+    %  cables for each of the buttons comprising the button boxes are
+    %  plugged in – one can just unplug the cable for the Left Yellow
+    %  button and plug in the photodiode into its spot. Then I turn the
+    %  photodiode on. Remember to undo all of this when you clean up after
+    %  the testing.
     %
-    %   *Stim channels for the button box are STI008-STI016, and are binary 0-1. These are combined into
-    %   the STIM101 as a decimal. MEGSYNC is able to convert these into "LY" (left hand button box press),
-    %   for example.
+    %  *Stim channels for the button box are STI008-STI016, and are binary
+    %  0-1. These are combined into the STIM101 as a decimal. MEGSYNC is
+    %  able to convert these into "LY" (left hand button box press) for
+    %  example.
     %
     %  2) Run this script.
     %
     %  AT 04/04/2023
     %
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+    flip_request_position = "after"; % 'after' of 'before' After is thought to avoid more variability. 
+
 
     % set up screen
 
@@ -79,24 +89,39 @@ function screenResfreshDelayChecker
 
         Screen('FillRect', window, black, [0 0 W H])
         vbl=Screen('Flip', window);
+        
+
+        if strcmp(flip_request_position, "before")
+            Mtic = MEG.Clock;
+            MEG.SendTrigger(1);  
+        end
 
         Screen('FillRect', window, white, [0 0 W H]);
         vbl=Screen('Flip', window, vbl + (0.5)*ifi); % sending white to projector
         
-        % Whether the position of the trigger is in front or behind the
-        % flip makes a big differnce - make sure this is the same as your actual expermental code.
-        
-        tic % Using tic/toc appears to add 2 ms compared with the triggers.
-        MEG.SendTrigger(1);
+        if strcmp(flip_request_position,"after")
 
+            % Whether the position of the trigger is in front or behind the
+            % flip makes a big differnce - make sure this is the same as your
+            % actual expermental code! For the CBU, if before the flip the delay is 33.33ms,
+            % if after it is 16.66ms. "After" is likely to have less variability.       
         
-        MEG.WaitForButtonPress(); % as the diode is plugged into the Left Hand yellow box
-        times(i) = toc; % when projector goes white/participant gets white
+            Mtic = MEG.Clock;
+            MEG.SendTrigger(1);  
+        end
         
+         MEG.WaitForButtonPress(); % as the diode is plugged into the Left Hand yellow box
+         lag = MEG.TimeOfLastButtonPress - Mtic; % this is more accurate than tic toc. Compared with
+                                                 % the MEG triggers, it only adds 0.5 ms
+         times(i) = lag; % when projector goes white/participant gets white
+         
+         WaitSecs(0.005)
+ 
+         MEG.SendTrigger(0); % set back as zero
+ 
+     end
 
-        MEG.SendTrigger(0); % set back as zero
-
-    end
+    disp('Timings estimated using MEGsynchclass timing estimates')
 
     for i = 1:length(times)
         disp([ 'photodiodeCurrent:' i '=' num2str(times(i))]);
@@ -108,38 +133,6 @@ function screenResfreshDelayChecker
     disp(['lowest:' num2str(min(times)) 'ms']);
 
     hist(times);
-
-
-    % do test of flips using second method
-
-    on_off = 1
-    Screen('FillRect', window, black, [0 0 W H]);
-    Screen('Flip', window);
-
-
-    for i = 1:length(60)
-        
-        if on_off = 1
-            Screen('FillRect', window, white, [0 0 W H]);
-            vbl=Screen('Flip', window, vbl + (0.5)*ifi); % sending white to projector
-            MEG.SendTrigger(1);
-            on_off = 0
-            WaitSecs(0.05)
-        else if on_off = 0 
-            Screen('FillRect', window, white, [0 0 W H]);
-            vbl=Screen('Flip', window, vbl + (0.5)*ifi); % sending white to projector
-            MEG.SendTrigger(0);
-            on_off = 1
-            WaitSecs(0.05)
-        end
-        
-        MEG.WaitForButtonPress(); % as the diode is plugged into the Left Hand yellow box
-        times(i) = toc; % when projector goes white/participant gets white
-        
-
-        MEG.SendTrigger(0); % set back as zero
-
-    end
 
     Priority(0);
     ShowCursor
