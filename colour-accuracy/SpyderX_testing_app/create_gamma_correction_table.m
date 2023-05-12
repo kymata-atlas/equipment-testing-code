@@ -20,9 +20,14 @@ deviceType = 2; %2 for SpyderX, 1 for Spyder5
 
 addpath(genpath(psycalibrator_location)); savepath;
 
-%Run the following: (By default it will choose the highest screen to do the test on.)
+% Run the following: (By default it will choose the highest screen to do the test on.)
+%
+% (If on a windows machine, you may need to use If on a windows machine,
+% you may need to use PsychHID('CloseUSBDevice'); first,
 
 gammaMeasure_APL(deviceType,[],[],[],[],[],[],2); 
+
+
 
 % This creates a Gamma table (gamma.mat) which sets out the colours at
 % different RGB intensities, specific to your screen. Now you want a *gamma
