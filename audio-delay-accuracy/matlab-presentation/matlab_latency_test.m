@@ -2,15 +2,12 @@ wavfilename = '1000_Stereo_unramped.wav';
 [wavedata, freq] = audioread(wavfilename);
 
 channels = 2;
-reqlatencyclass=2;
+reqlatencyclass=4;
 sugglatency=[]; % not changing anything this.
 InitializePsychSound(1);
 devices = PsychPortAudio('GetDevices');
-deviceid = 9; %windows direct sound              184, 24, 22, 23, 22, 23, 22 (!) % Does use accept two sound handels.
-%deviceid = 4; %MME                                DO NOT USE - INTRODUCES JITTER
-%deviceid = 10; %ASIO (default)                   190,65, 93,93,93,93...... (to within a ms!)
-%deviceid = [];
-MySoundHandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, channels, [], sugglatency);
+deviceid = 6; %windows direct sound              184, 24, 22, 23, 22, 23, 22 (!) % Does use accept two sound handels.
+MySoundHandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, channels, 48, sugglatency);
 
 %Delay asio  first pulse 15ms, and then everyone from the point is 83 ms from that trigger
 
