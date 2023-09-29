@@ -27,4 +27,6 @@ PsychPortAudio('FillBuffer', MySoundHandle, wavedata');
 PsychPortAudio('Start', MySoundHandle, 1, 0, 0, 0.001);
 PsychPortAudio('Stop', MySoundHandle, 1);
     
-PsychPortAudio('Start', MySoundHandle, 1, inf, 0);
+PsychPortAudio('Start', MySoundHandle, 1, 0, 0);
+
+Waitsecs (410);
