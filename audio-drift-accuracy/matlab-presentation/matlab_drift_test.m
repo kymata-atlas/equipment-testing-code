@@ -11,7 +11,7 @@ sugglatency=[]; % not changing anything this.
 InitializePsychSound(1);
 buffersize = 48;
 devices = PsychPortAudio('GetDevices');
-deviceid = 6; 
+deviceid = 5; 
 MySoundHandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, channels, buffersize, sugglatency);
 
 

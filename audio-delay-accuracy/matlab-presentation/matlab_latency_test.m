@@ -6,7 +6,7 @@ reqlatencyclass=4;
 sugglatency=[]; % not changing anything this.
 InitializePsychSound(1);
 devices = PsychPortAudio('GetDevices');
-deviceid = 6; % use Windows WASAPI
+deviceid = 5; % use Windows WASAPI
 MySoundHandle = PsychPortAudio('Open', deviceid, [], reqlatencyclass, freq, channels, 48, sugglatency);
 
 PsychPortAudio('FillBuffer', MySoundHandle, wavedata');
