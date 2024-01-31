@@ -1,0 +1,4 @@
+Please ask Tech Help at the CBU for the values for the last
+time that this was checked. It needs to have been within
+a year, and the test needs to confirm that the loudness
+levels of left and right are both XXdB.
