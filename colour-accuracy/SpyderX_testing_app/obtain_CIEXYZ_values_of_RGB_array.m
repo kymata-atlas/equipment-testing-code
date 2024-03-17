@@ -26,7 +26,7 @@ function output_XYZ_values = obtain_CIEXYZ_values_of_RGB_array()
 psycalibrator_location = 'matlab_libraries'; % this is the location of PsyCalibrator-main, reletive to your working directory
 name_of_rgb_csv_to_measure = "data/test_file_rgb_color_array.csv";
 name_of_rgb_gamma_correction_norms = "data/Kymata_test_screen_gamma_correction_tables/2023_rgb_gamma_correction_norms.csv";
-nMeasures = 5; % definition of the number of measurements
+nMeasures = 3; % definition of the number of measurements
 
 % load data
 rgb_gamma_correction_norms = load(name_of_rgb_gamma_correction_norms);
