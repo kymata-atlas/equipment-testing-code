@@ -16,3 +16,7 @@ for r = 0:17:255
 end
 scatter3(colour_table(:,1),colour_table(:,2),colour_table(:,3));
 writematrix(colour_table,'test_file_rgb_color_array.csv') 
+
+
+% ----- Once the table has been obtained with the colometer
+scatter3(rgbxyzcolorarray{:,'CIE1931X'},rgbxyzcolorarray{:,'CIE1931Y'},rgbxyzcolorarray{:,'CIE1931Z'});
